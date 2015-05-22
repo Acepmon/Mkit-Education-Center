@@ -5,6 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
@@ -29,14 +31,26 @@ public class CustomerLogin {
         rootNode.setLayoutX((1024 - 400) / 2);
         rootNode.setLayoutY((768 - 500) / 2);
         root.setStyle("-fx-background-color: #fff");
-        root.getChildren().add(rootNode);
+     
+       
+     
         myStage.setScene(myScene);
         myStage.setResizable(false);
+       
 
         /*Гарчиг*/
         Label lbl = new Label("Хэрэглэгчийн Нэвтрэх Хэсэг");
-        lbl.setFont(new Font("Arial", 20));
-
+        lbl.setFont(new Font("Arial", 30));
+        lbl.setStyle("-fx-text-fill: white;");
+        
+        
+        Image wall = new Image("login/ui/wall5.jpg");
+        ImageView wall2 = new ImageView(wall);
+        wall2.setFitHeight(780);
+        wall2.setFitWidth(1050);
+        root.getChildren().add(wall2);
+        root.getChildren().add(rootNode);
+        
         /*Хэрэглэгчийн нэрээ оруулах талбар*/
         TextField fld = new TextField();
         fld.setPromptText("Хэрэглэгчийн Нэр/Username");
@@ -49,28 +63,30 @@ public class CustomerLogin {
 
         /*Хэрэглэгчийн нэр, нууц үгийг санана*/
         CheckBox box1 = new CheckBox("Намайг cана/Remember Me");
+        box1.setStyle("-fx-text-fill: white;");
         box1.setPrefSize(200, 30);
 
         /*Шууд нэвтэрнэ*/
         CheckBox box2 = new CheckBox("Шууд нэвтрэх/Auto Login");
+        box2.setStyle("-fx-text-fill: white;");
         box2.setPrefSize(200, 30);
 
         /*Нууц үгээ мартсан хэсэг, хулганаар даралт хийхэд нэмэлт цонх гарж ирнэ*/
         Label lbl2 = new Label("Нууц үгээ мартсан/Forget Password");
-        lbl2.setStyle("-fx-text-fill:Blue;");
+        lbl2.setStyle("-fx-text-fill: white;");
         lbl2.setPrefSize(200, 30);
         lbl2.setOnMousePressed(ae -> {
-            lbl2.setStyle("-fx-text-fill:white;");
+            lbl2.setStyle("-fx-text-fill: #E0E0EB;");
             Stage stage = new Stage();
             new PasswordReset().start(stage);
         });
         lbl2.setOnMouseMoved(ae -> {
-            lbl2.setStyle("-fx-text-fill:RED;");
+            lbl2.setStyle("-fx-text-fill:#40AFFF;");
             myScene.setCursor(Cursor.HAND);
         });
         lbl2.setOnMouseExited(ae -> {
             myScene.setCursor(Cursor.DEFAULT);
-            lbl2.setStyle("-fx-text-fill:Blue;");
+            lbl2.setStyle("-fx-text-fill: white;");
         });
 
         /*Нэвтрэх button дээр дархад нэр нууц үг буруу байна гэсэн бичиг гарж ирнэ*/
@@ -87,6 +103,7 @@ public class CustomerLogin {
         btn.setStyle("-fx-background-color: #2C53BF; -fx-text-fill: white;");
         btn.setPrefSize(200, 40);
         btn.setOnAction(ae -> {
+            test.Testing.setScene(new teacherMain.teacherMain().getScene());
             String fld1 = (fld.getText());
             pnl.setVisible(true);
         });
@@ -100,11 +117,12 @@ public class CustomerLogin {
             
         });
 
+     
         rootNode.requestFocus();
-        rootNode.setStyle("-fx-background-color: #fff");
         rootNode.getChildren().addAll(lbl, pnl, fld, fld2, box1, box2, lbl2, btn, btn2);
     }
-    
+
+
     public Scene getScene() {
         return this.myScene;
     }
