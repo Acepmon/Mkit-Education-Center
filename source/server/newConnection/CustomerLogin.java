@@ -1,8 +1,5 @@
-package login.ui;
+package newConnection;
 //Bold-Erdene//
-import login.ui.*;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 import java.sql.SQLException;
@@ -18,7 +15,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-
 /*
     CustomerLogin object үүсгэж байхад
     өөрийн зарлагдсан scene object-г
@@ -131,16 +127,20 @@ public class CustomerLogin {
             
 
        try {
-           ClientTest.dos.writeObject(nerutga);
-           ClientTest.dos.writeObject(passutga);
+    	   ClientTest.dos.writeObject(nerutga);
+    	   ClientTest.dos.writeObject(passutga);
+    	   
+//           ClientTest.dos.writeUTF(nerutga);      
+//           ClientTest.dos.writeUTF(passutga);
+    	   
+    	   String boov = null;
+           try {
+	           boov = ClientTest.dis.readObject().toString();
+	           } 
+           catch (ClassNotFoundException ex) {
+           }
            
-            String boov = null;
-               try {
-               boov = ClientTest.dis.readObject().toString();
-               } catch (ClassNotFoundException ex) {
-               }
-           
-        
+//           String boov = ClientTest.dis.readUTF();
        
            if(boov.equals("true")) {
                StudentAdd.studentnemeh();

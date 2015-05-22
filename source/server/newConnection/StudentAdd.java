@@ -1,6 +1,5 @@
-package login.ui;
+package newConnection;
 
-import login.ui.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -99,3 +98,4 @@ public class StudentAdd {
         stage.show();
     }
 }
+

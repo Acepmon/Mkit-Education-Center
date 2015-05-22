@@ -1,8 +1,8 @@
-package server;
+package newConnectionServer;
 
-import server.*;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+//import server.*;
+//import java.io.DataInputStream;
+//import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -10,12 +10,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 
 public class ChatServer {
-
     /**
      * The port that the server listens on.
      */
@@ -23,9 +19,13 @@ public class ChatServer {
     private static ObjectOutputStream output;
     private static ObjectInputStream input;
     private static ServerSocket listener;
-   
+    public static String user;
+    public static String pas;
+    public static boolean boov;
+    static DatabaseTools db = new DatabaseTools();
+    
     /**
-     * The appplication main method, which just listens on a port and
+     * The application main method, which just listens on a port and
      * spawns handler threads.
      */
     public static void main(String[] args) throws Exception {
@@ -47,9 +47,8 @@ public class ChatServer {
      */
     private static class Handler extends Thread {
         private Socket socket;
-        String user;
-        String pas;
-        boolean boov;
+       
+     
         /**
          * Constructs a handler thread, squirreling away the socket.
          * All the interesting work is done in the run method.
@@ -80,16 +79,14 @@ public class ChatServer {
             
             } catch (ClassNotFoundException ex) {
                 }
-            String query = "select*from login_user" ;
-            ResultSet rs = DatabaseTools.runQuery(query);
                 
-            while (rs.next()) {
-                if (user.equals(rs.getString("user_name")) && pas.equals(rs.getString("user_pass"))) {
-                    
-                    boov = true;
-                    break;
-                }
-              }
+            try {
+				db.nevtreh();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+                
             if (boov) {
                     output.writeObject("true");
                     System.out.println("Нэр нууц үг зөв байна хариу явуулсан");
@@ -101,7 +98,6 @@ public class ChatServer {
                
             } catch (IOException e) {
                 System.out.println(e);
-            } catch (SQLException ex) {
                 System.out.println("SQL Алдаа");
             } finally {
                 

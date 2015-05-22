@@ -1,5 +1,5 @@
-package login.ui;
-
+package newConnection;
+//Bold-Erdene//
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -7,9 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-
-
 import javafx.scene.layout.Pane;
+
 public class PasswordReset extends Application {
     public static void main(String[] args) {
         launch(args);

@@ -1,4 +1,4 @@
-package login.ui;
+package newConnection;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,7 +15,6 @@ public class TestClass extends Application{
         primaryStage.setScene(new CustomerLogin().getScene());
         primaryStage.show();
         primaryStage.setResizable(false);
-        primaryStage.setTitle("Login Test");
- 
+        primaryStage.setTitle("Login Test"); 
     }
 }
