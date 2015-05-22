@@ -1,20 +1,24 @@
 package ui;
 
+import java.awt.event.MouseEvent;
 import java.io.File;
+import java.time.LocalDate;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
-
-
 
 public class DaalgavarSend {
 
@@ -24,6 +28,7 @@ public class DaalgavarSend {
     private TextArea tailbararea;
     private BorderPane rootNode;
     private Button zaah, onsar;
+    private DatePicker time1;
 
     public DaalgavarSend() {
 
@@ -44,37 +49,33 @@ public class DaalgavarSend {
         svvliint.setId("daalgavar_send_label");
         daalgavaryaw = new Label("Даалгавар явуулах");
         daalgavaryaw.setPrefWidth(525);
-        daalgavaryaw.setFont(new Font("Arial", 30));
-        daalgavaryaw.setStyle("-fx-background-color: #54B1EB; -fx-padding: 14px 20px 10px 20px;");
-  
-        
-//        svvliint.setOnMouseEntered(new EventHandler<MouseEvent>() {
-//    @Override public void handle(MouseEvent e) {
-//        svvliint.setScaleX(1.5);
-//        svvliint.setScaleY(1.5);
-//    }});
-//        svvliint.setOnMouseExited(new EventHandler<MouseEvent>() {
-//    @Override public void handle(MouseEvent e) {
-//        svvliint.setScaleX(1);
-//        svvliint.setScaleY(1);
-//    }
-//});
+        daalgavaryaw.setFont(new Font("Cambria", 30));
+        daalgavaryaw.setStyle("-fx-background-color: #A1ABA1; -fx-padding: 14px 20px 14px 0px;");
+        daalgavaryaw.setAlignment(Pos.CENTER);
+
         toonii = new TextField();
         toonii.setPromptText("Тооны машин");
         toonii.setId("daalgavar_send_textf");
         toonii.setMaxHeight(20);
+        toonii.setMaxWidth(240);
+        toonii.setStyle("-fx-background-insets: 0;");
+
         zamfld = new TextField();
         zamfld.setPromptText("E: Lesson01_Test_MKiT");
         zamfld.setId("daalgavar_send_textf");
+        zamfld.setStyle("-fx-background-insets: 0;");
+
 //        zamfld.setPrefWidth(100);
         tailbararea = new TextArea();
         tailbararea.setPrefHeight(20);
-        tailbararea.setPrefWidth(150);
         tailbararea.setId("daalgavar_send_textf");
+        tailbararea.setMaxWidth(240);
+        tailbararea.setStyle("-fx-background-insets: 0;");
         svvliinfld = new TextField();
         svvliinfld.setPromptText("---- оны -- сарын -- өдөр дуусна.");
         svvliinfld.setId("daalgavar_send_textf");
-
+        svvliinfld.setStyle("-fx-background-insets: 0;");
+        
         Image img = new Image("ui/true.png", true);
         ImageView image = new ImageView();
         image.setImage(img);
@@ -113,43 +114,62 @@ public class DaalgavarSend {
         image3.setSmooth(true);
         image3.setPreserveRatio(true);
         image3.setFitHeight(25);
-
+        
         HBox pictureRegion3 = new HBox();
         pictureRegion3.getChildren().add(image3);
         pictureRegion3.setId("daalgavar_send_image");
+
+        time1 = new DatePicker();
+        time1.setValue(LocalDate.now());
         
+        zaah = new Button("Заах");
+        zaah.setPrefSize(80, 20);
+        zaah.setId("btns1");
+
+        onsar = new Button("Он сар өдөр");
+        onsar.setId("btns1");
+        onsar.setOnMousePressed(ae->{
+            
+            LocalDate date = time1.getValue();
+            LocalDate time = time1.getValue();
+            Alert time1 = new Alert(Alert.AlertType.INFORMATION);
+            time1.setTitle("Он сар өдөр");
+            time1.setHeaderText("Улаанбаатар");
+            time1.setContentText("Өнөөдөр" +date);
+            time1.showAndWait();
+            
+            
+        });
+
+        FlowPane zam = new FlowPane(zamfld, zaah);
+        zam.setMaxWidth(250);
+        FlowPane onsar1 = new FlowPane(svvliinfld, onsar);
+        onsar1.setMaxWidth(250);
+
         pnl.add(daalgavarname, 0, 0);
         pnl.add(toonii, 0, 1);
         pnl.add(zamzaah, 0, 2);
-        pnl.add(zamfld, 0, 3);
+//        pnl.add(zamfld, 0, 3);
+        pnl.add(zam, 0, 3);
         pnl.add(tailbarbichih, 0, 4);
         pnl.add(tailbararea, 0, 5);
         pnl.add(svvliint, 0, 6);
-        pnl.add(svvliinfld, 0, 7);
+//        pnl.add(svvliinfld, 0, 7);
+        pnl.add(onsar1, 0, 7);
         pnl.add(pictureRegion, 2, 1);
         pnl.add(pictureRegion1, 2, 3);
         pnl.add(pictureRegion2, 2, 5);
         pnl.add(pictureRegion3, 2, 7);
 
-        zaah = new Button("Заах");
-        zaah.setPrefSize(60, 20);
-        zaah.setStyle("-fx-background-color: #0574B0");
-
-        pnl.add(zaah, 1, 3);
-        
-        onsar = new Button(null, new ImageView(new Image("ui/qwerty.png", true)));
-        onsar.setPrefSize(60, 20);
-        onsar.setStyle("-fx-background-color: #0574B0");
-        
-        pnl.add(onsar, 1, 7);
-        
+//        pnl.add(zaah, 1, 3);
+//        pnl.add(onsar, 1, 7);
         pnl.setPadding(new Insets(25, 10, 10, 30));
 
         tailbararea.setWrapText(true);
-        
+
         rootNode.setTop(daalgavaryaw);
         rootNode.setCenter(pnl);
-        pnl.setStyle("-fx-background-color: #B8DFF5;");
+        pnl.setStyle("-fx-background-color: #727C82;");
     }
 
     public BorderPane getContainer() {
