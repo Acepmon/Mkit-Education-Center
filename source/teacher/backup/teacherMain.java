@@ -113,7 +113,5 @@ public class teacherMain {
     
     public Scene getScene() {
         return this.scene;
-    }
-    
-    
+    }    
 }
