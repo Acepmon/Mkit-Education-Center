@@ -1,0 +1,62 @@
+/* 
+    Created on : May 25, 2015, 2:31:06 PM
+    Author     : JAVA M2
+*/
+
+#btn {
+    -fx-text-fill: #fff;
+    -fx-border-width: 0px 0px 6px 0px;
+    -fx-border-color: transparent;
+}
+#btn:hover {
+    -fx-background-color: #808080;
+    -fx-border-color: #99CC66;
+    -fx-cursor: hand;
+}
+#text{
+    -fx-text-fill: #666666;
+}
+
+#panel {
+    -fx-background-color: white;
+    -fx-border-width: 1px;
+    -fx-border-style: solid;
+    -fx-border-color: #E6E6E6;
+    -fx-overflow-y: visible;
+    -fx-overflow-x: visible;
+}
+
+#border {
+    -fx-border-color: #B3B3B3;
+    -fx-border-image-width: 2px;
+}
+
+#btns:hover {
+    -fx-text-fill: #99CC66;
+    -fx-cursor: hand;
+}
+
+#panel_header_left_right {
+    -fx-background-color: #E6E6E6;
+    -fx-padding: 10px;
+    -fx-border-width: 0px 6px 0px 6px;
+    -fx-border-raduis: 5px;
+    -fx-border-color: #99CC66;
+}
+
+.list-view {
+    -fx-border-style: dashed;
+    
+}
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+   
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+.list-cell { -fx-text-fill: black;}
+.list-cell:odd { -fx-background-color: transparent;}
+.list-cell:even { -fx-background-color: transparent;}
+.list-cell:filled:hover { 
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
