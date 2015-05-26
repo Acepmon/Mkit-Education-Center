@@ -1,4 +1,4 @@
-package newConnection;
+package client_jishee;
 //Bold-Erdene//
 import javafx.application.Application;
 import javafx.geometry.Insets;

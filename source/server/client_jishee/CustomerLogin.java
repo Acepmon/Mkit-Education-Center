@@ -1,10 +1,6 @@
-package newConnection;
+package client_jishee;
 //Bold-Erdene//
 import java.io.IOException;
-import java.net.Socket;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -14,7 +10,6 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 /*
     CustomerLogin object үүсгэж байхад
     өөрийн зарлагдсан scene object-г
@@ -123,24 +118,24 @@ public class CustomerLogin {
            String nerutga = nerfld.getText();
            String passutga = passfld.getText();
            
-           ClientTest.shalgah();
+           
+           ClientTest.ClientAjluulah();
             
 
        try {
     	   ClientTest.dos.writeObject(nerutga);
-    	   ClientTest.dos.writeObject(passutga);
+           ClientTest.dos.writeObject(passutga);
+           ClientTest.dos.flush();
     	   
-//           ClientTest.dos.writeUTF(nerutga);      
-//           ClientTest.dos.writeUTF(passutga);
     	   
     	   String boov = null;
            try {
 	           boov = ClientTest.dis.readObject().toString();
 	           } 
            catch (ClassNotFoundException ex) {
+               ex.printStackTrace();
            }
            
-//           String boov = ClientTest.dis.readUTF();
        
            if(boov.equals("true")) {
                StudentAdd.studentnemeh();
@@ -148,7 +143,8 @@ public class CustomerLogin {
                pnl.setVisible(true);
           }
                } catch (IOException ex) {
+                   ex.printStackTrace();
        }
-    }
+   }
 }
 
