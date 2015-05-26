@@ -23,7 +23,6 @@ public class CustomerLogin implements teacher.config.Config {
     private Scene myScene;
 
     public CustomerLogin(Stage myStage) {
-        myStage.setTitle("");
         Pane root =new Pane();
         FlowPane rootNode = new FlowPane(40, 20);
         rootNode.setAlignment(Pos.CENTER);

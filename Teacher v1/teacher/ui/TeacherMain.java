@@ -34,12 +34,22 @@ public class TeacherMain implements teacher.config.Config {
         mainBtn.setFont(javafx.scene.text.Font.font("Arial", 12));
         mainBtn.setAlignment(Pos.CENTER);
         mainBtn.setId("btn");
+        mainBtn.setOnMousePressed(ae -> {
+            TeacherMain.changeLeft(Launcher.getHUVAARI().getContainer());
+            TeacherMain.changeCenter(Launcher.getMEDEELEL().getContainer());
+            TeacherMain.changeRight(Launcher.getHOMEWORK().getContainer());
+        });
         
         Label hwBtn = new Label("Даалгавар");
         hwBtn.setPrefSize(120, 60);
         hwBtn.setFont(javafx.scene.text.Font.font("Arial", 12));
         hwBtn.setAlignment(Pos.CENTER);
         hwBtn.setId("btn");
+        hwBtn.setOnMousePressed(ae -> {
+            TeacherMain.changeCenter(Launcher.getDAALGAVARSEND().getContainer());
+            TeacherMain.changeLeft(Launcher.getHUVAARI().getContainer());
+            TeacherMain.changeRight(Launcher.getNERS().getContainer());
+        });
         
         Label examBtn = new Label("Шалгалт авах");
         examBtn.setPrefSize(120, 60);

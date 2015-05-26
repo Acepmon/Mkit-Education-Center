@@ -46,9 +46,8 @@ public class Launcher extends Application implements teacher.config.Config {
     @Override
     public void start(Stage primaryStage) {
         stage = primaryStage;
-        
-        System.out.println("Loading...");
-        Loader();
+                
+        LOGIN = new CustomerLogin(Launcher.getStage());
         defaultScene = LOGIN.getScene();
         
         stage.setTitle(STAGE_TITLE);
@@ -56,6 +55,18 @@ public class Launcher extends Application implements teacher.config.Config {
         stage.setMaximized(MAXIMIZABLE);
         stage.setScene(defaultScene);
         stage.show();
+        
+        INNER_HOMEWORK = new Inner_homework();
+        INNER_HUVAARI = new Inner_huvaari();
+        CENTER = new Center();
+        DAALGAVARSEND = new DaalgavarSend();
+        HOMEWORK = new Homework();
+        HUVAARI = new Huvaari();
+        IRTS = new Irts();
+        MEDEELEL = new Medeelel();
+        NERS = new Ners();
+        TREE = new Tree();
+        TEACHER = new TeacherMain();
     }
     
     public static void setScene(Scene scene) {
@@ -71,22 +82,6 @@ public class Launcher extends Application implements teacher.config.Config {
         launch(args);
     }
     
-    private void Loader() {
-        LOGIN = new CustomerLogin(Launcher.getStage());
-        CENTER = new Center();
-        DAALGAVARSEND = new DaalgavarSend();
-        HOMEWORK = new Homework();
-        HUVAARI = new Huvaari();
-        INNER_HOMEWORK = new Inner_homework();
-        INNER_HUVAARI = new Inner_huvaari();
-        IRTS = new Irts();
-        MEDEELEL = new Medeelel();
-        NERS = new Ners();
-        TREE = new Tree();
-        TEACHER = new TeacherMain();
-        System.out.println("Loading complete!");
-    }
-
     public static Scene getDefaultScene() {
         return defaultScene;
     }
