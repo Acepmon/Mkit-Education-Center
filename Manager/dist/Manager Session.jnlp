@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Manager Session.jnlp">
+  <information>
+    <title>Manager Session</title>
+    <vendor>JAVA M2</vendor>
+    <description>Sample JavaFX 2.0 application.</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Manager Session.jar" size="207287" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="ManagerPac.Launcher"  name="Manager Session" />
+  <update check="background"/>
+</jnlp>
