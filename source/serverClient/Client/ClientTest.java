@@ -1,4 +1,4 @@
-package client_jishee;
+package Client;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,7 +23,7 @@ public class ClientTest {
     }
 
     public static void holboltUusgeh() throws IOException {
-        socket = new Socket("192.168.0.126", 9001);
+        socket = new Socket("192.168.0.124", 3106);
     }
 
     public static void holboltAvah() throws IOException {
@@ -38,5 +38,21 @@ public class ClientTest {
         dos.close();
         socket.close();
     }
+
+    public static Object RequestAjluulah(Object request, Object data) {
+        ClientAjluulah();
+        Object returnValue = null;
+        try {
+            ClientTest.dos.writeObject(request);
+            ClientTest.dos.writeObject(data);
+            ClientTest.dos.flush();
+            returnValue = ClientTest.dis.readObject();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return returnValue;
+    }
 }
-    
+

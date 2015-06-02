@@ -1,4 +1,4 @@
-package client_jishee;
+package Client;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

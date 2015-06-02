@@ -1,4 +1,4 @@
-package server;
+package Server;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class SurgaltServer {
 
     /* Сервер энэ портоор сонсоно */
-    private static final int PORT = 9001;
+    private static final int PORT = 3106;
     private static ObjectOutputStream output;
     private static ObjectInputStream input;
     private static ServerSocket listener;
@@ -24,6 +24,9 @@ public class SurgaltServer {
     үүсгэж байдаг
      */
     public static void main(String[] args) throws Exception {
+        
+        
+        DB_Copy copy = new DB_Copy();
         System.out.println("Сервэр ажиллаж эхэллээ.");
         listener = new ServerSocket(PORT);
         try {
@@ -69,22 +72,17 @@ public class SurgaltServer {
 
                 input = new ObjectInputStream(socket.getInputStream());
                     
-                    user = input.readObject().toString();
-                    pas = input.readObject().toString();
+                    Object request = input.readObject();
+                    Object data = input.readObject();
                     
-                try {
-                    db.nevtreh();
-                    user = "";
-                    pas = "";
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-
-                if (voov) {
-                    output.writeObject("true");
+                    
+                boolean response = (boolean) RequestFilter.Request(request.toString(), data);  
+                    
+                if (response) {
+                    output.writeObject(response);
                     System.out.println("Нэр нууц үг зөв байна хариу явуулсан");
                 } else {
-                    output.writeObject("false");
+                    output.writeObject(response);
                     System.out.println("Нэр нууц үг буруу байна хариу явуулсан");
                 }
 

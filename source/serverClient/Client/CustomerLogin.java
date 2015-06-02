@@ -1,5 +1,6 @@
-package client_jishee;
+package Client;
 //Bold-Erdene//
+
 import java.io.IOException;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -11,21 +12,23 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 /*
-    CustomerLogin object үүсгэж байхад
-    өөрийн зарлагдсан scene object-г
-    getScene() функцээр авна.
-*/
+ CustomerLogin object үүсгэж байхад
+ өөрийн зарлагдсан scene object-г
+ getScene() функцээр авна.
+ */
+
 public class CustomerLogin {
-    
-   static private Scene myScene;
-   TextField nerfld;
-   PasswordField passfld;
-   Pane pnl;
+
+    static private Scene myScene;
+    TextField nerfld;
+    PasswordField passfld;
+    Pane pnl;
+
     public CustomerLogin() {
-        
+
         Stage myStage = new Stage();
         myStage.setTitle("");
-        Pane root =new Pane();
+        Pane root = new Pane();
         FlowPane rootNode = new FlowPane(40, 20);
         rootNode.setAlignment(Pos.CENTER);
         myScene = new Scene(root, 1024, 768);
@@ -93,7 +96,7 @@ public class CustomerLogin {
         btn.setOnAction(ae -> {
             shalgah();
             System.out.println("Newtreh towch");
-        
+
         });
 
         /*Болих button*/
@@ -102,49 +105,29 @@ public class CustomerLogin {
         btn2.setPrefSize(200, 40);
         btn2.setOnAction(ae -> {
             myStage.close();
-            
+
         });
 
         rootNode.requestFocus();
         rootNode.setStyle("-fx-background-color: #fff");
         rootNode.getChildren().addAll(lbl, pnl, nerfld, passfld, box1, box2, lbl2, btn, btn2);
     }
-    
+
     public Scene getScene() {
         return this.myScene;
     }
-     public void shalgah(){
+
+    public void shalgah() {
+
+        String nerutga = nerfld.getText();
+        String passutga = passfld.getText();
+
+        boolean boov = (boolean) ClientTest.RequestAjluulah("login", nerutga + "::" + passutga);
         
-           String nerutga = nerfld.getText();
-           String passutga = passfld.getText();
-           
-           
-           ClientTest.ClientAjluulah();
-            
-
-       try {
-    	   ClientTest.dos.writeObject(nerutga);
-           ClientTest.dos.writeObject(passutga);
-           ClientTest.dos.flush();
-    	   
-    	   
-    	   String boov = null;
-           try {
-	           boov = ClientTest.dis.readObject().toString();
-	           } 
-           catch (ClassNotFoundException ex) {
-               ex.printStackTrace();
-           }
-           
-       
-           if(boov.equals("true")) {
-               StudentAdd.studentnemeh();
-           } else if (boov.equals("false")) {
-               pnl.setVisible(true);
-          }
-               } catch (IOException ex) {
-                   ex.printStackTrace();
-       }
-   }
+        if (boov) {
+            StudentAdd.studentnemeh();
+        } else {
+            pnl.setVisible(true);
+        }
+    }
 }
-
