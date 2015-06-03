@@ -1,5 +1,6 @@
 package login.ui;
 //Bold-Erdene//
+import homeworkcheckview.teacherMain;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -11,6 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import login.controller.ClientTest;
 
 /*
     CustomerLogin object үүсгэж байхад
@@ -103,9 +105,16 @@ public class CustomerLogin {
         btn.setStyle("-fx-background-color: #2C53BF; -fx-text-fill: white;");
         btn.setPrefSize(200, 40);
         btn.setOnAction(ae -> {
-            test.Testing.setScene(new teacherMain.teacherMain().getScene());
-            String fld1 = (fld.getText());
-            pnl.setVisible(true);
+
+            Boolean response =(Boolean) ClientTest.RequestAjluulah("Account", fld.getText()+"::"+fld2.getText());
+            
+            if (response) {
+                // Undsen mainframe enchee duudaj og
+                // Jishee : test.Testing.setScene(new teacherMain().getScene());
+            } else {
+                pnl.setVisible(true);
+                
+            }
         });
 
         /*Болих button*/
