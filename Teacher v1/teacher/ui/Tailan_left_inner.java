@@ -7,12 +7,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 
-public class inner_huvaari {
+public class Tailan_left_inner {
 
     private ScrollPane scroll;
     private FlowPane inner_;
 
-    public inner_huvaari() {
+    public Tailan_left_inner() {
 
         inner_ = new FlowPane(10, 10);
         inner_.setPrefSize(220, 500);
@@ -21,8 +21,8 @@ public class inner_huvaari {
         inner_.setAlignment(Pos.TOP_CENTER);
         inner_.setPadding(new Insets(20, 0, 0, 0));
 
-        Label label_one = new Label("10:00-11:20 цагт “Java” Лекц");
-        Label label_two = new Label("12:00-17:00 цагт “Java” Ceминар");
+        Label label_one = new Label("BLANK");
+        Label label_two = new Label("BLANK");
         label_one.setId("btns");
         label_two.setId("btns");
         Separator sep_one = new Separator();
@@ -33,10 +33,7 @@ public class inner_huvaari {
 
         inner_.getChildren().addAll(label_one, sep_one, label_two, sep_two);
         scroll = new ScrollPane(inner_);
-        
-        
-
-        
+      
     }
 
     public ScrollPane getContainer() {

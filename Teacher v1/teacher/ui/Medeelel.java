@@ -1,4 +1,4 @@
-package teacher.ui;
+package surgaltin.alba;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -6,11 +6,11 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 
-public class Medeelel {
+public class medeelel {
     
     private BorderPane centerFp;
     
-    public Medeelel(){
+    public medeelel(){
         
         centerFp = new BorderPane();
         centerFp.setPrefSize(528, 708);
@@ -82,13 +82,7 @@ public class Medeelel {
         medeelelFp2.setStyle("-fx-background-color: #E6E6E6; -fx-padding: 10px;");
         medeelelFp2.setPrefSize(500, 100);
         medeelelFp2.setId("panel_header_left_right");
-        
-        
-        
-        
-        
-        
-        
+
         newsFp.getChildren().addAll(medeelelFp, medeelelFp1, medeelelFp2);
         centerFp.setTop(nameLbl);
         centerFp.setCenter(newsFp);

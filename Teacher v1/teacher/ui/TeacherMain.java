@@ -1,43 +1,53 @@
-package teacher.ui;
 
+package surgaltin.alba;
+
+import java.awt.event.MouseEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import teacher.launch.Launcher;
+import surgaltiin.alba.irts.irts;
 
-public class TeacherMain implements teacher.config.Config {
+public class teacherMain {
     
     private static BorderPane rootNode;
     private Scene scene;
-    private TextArea txtarea;
     
-    public TeacherMain(){
+    public static huvaari huvaari = new huvaari();
+    public static homework homework = new homework();
+    public static medeelel medeelel = new medeelel();
+    public static irts irts = new irts();
+    public static tailan_left tailan_left = new tailan_left();
+    public static Tailan_medeelel Tailan_medeelel = new Tailan_medeelel();
+    
+    public teacherMain(){
+        
         rootNode = new BorderPane();        
-        scene = new Scene(rootNode, STAGE_WIDTH, STAGE_HEIGHT);
+        scene = new Scene(rootNode, config.Config.STAGE_WIDTH, config.Config.STAGE_HEIGHT);
         
         ///// menu bar
         
         FlowPane topFp = new FlowPane();
-        scene.getStylesheets().add("teacher/ui/style/mainStyle.css");
-        topFp.setStyle("-fx-background-color: #666666");
+        scene.getStylesheets().add(getClass().getResource("teacherUiStyle.css").toExternalForm());
+        topFp.setStyle("-fx-background-color: #B3B3B3");
         topFp.setPrefHeight(60);
         
-        ////*Top*/////
+        
+        
+        
+        ////Дээд талын хэсэг
         Label mainBtn = new Label("Үндсэн");
         mainBtn.setPrefSize(120, 60);
         mainBtn.setFont(javafx.scene.text.Font.font("Arial", 12));
         mainBtn.setAlignment(Pos.CENTER);
         mainBtn.setId("btn");
         mainBtn.setOnMousePressed(ae -> {
-            TeacherMain.changeLeft(Launcher.getHUVAARI().getContainer());
-            TeacherMain.changeCenter(Launcher.getMEDEELEL().getContainer());
-            TeacherMain.changeRight(Launcher.getHOMEWORK().getContainer());
+            teacherMain.changeLeft(huvaari.getContainer());
+            teacherMain.changeRight(homework.getContainer());
+            teacherMain.changeCenter(medeelel.getContainer());
         });
         
         Label hwBtn = new Label("Даалгавар");
@@ -46,9 +56,9 @@ public class TeacherMain implements teacher.config.Config {
         hwBtn.setAlignment(Pos.CENTER);
         hwBtn.setId("btn");
         hwBtn.setOnMousePressed(ae -> {
-            TeacherMain.changeCenter(Launcher.getDAALGAVARSEND().getContainer());
-            TeacherMain.changeLeft(Launcher.getHUVAARI().getContainer());
-            TeacherMain.changeRight(Launcher.getNERS().getContainer());
+//            teacherMain.changeLeft(huvaari.getContainer());
+//            teacherMain.changeRight(homework.getContainer());
+//            teacherMain.changeCenter(medeelel.getContainer());
         });
         
         Label examBtn = new Label("Шалгалт авах");
@@ -69,40 +79,45 @@ public class TeacherMain implements teacher.config.Config {
         tailanBtn.setAlignment(Pos.CENTER);
         tailanBtn.setId("btn");
         
-        Image logo = new Image("teacher/resource/Logo.png");
-        ImageView Logo = new ImageView(logo);
-        Logo.setFitHeight(60);
-        Logo.setFitWidth(200);
-        Logo.setLayoutX(10);
-        Logo.setEffect(null);
+        ////events
         
-        topFp.getChildren().addAll(Logo,mainBtn, hwBtn, examBtn, scoreBtn, tailanBtn);
+        tailanBtn.setOnMousePressed(ae -> {
+            teacherMain.changeLeft(teacherMain.tailan_left.getContainer());
+            teacherMain.changeCenter(teacherMain.Tailan_medeelel.getContainer());
+            teacherMain.changeRight(null);
+        });
+        
+        
+    
+        
+        topFp.getChildren().addAll(mainBtn, hwBtn, examBtn, scoreBtn, tailanBtn);
+        
 
         rootNode.setTop(topFp);
-        rootNode.setLeft(Launcher.getHOMEWORK().getContainer());
-        rootNode.setRight(Launcher.getTREE().getContainer());
-        rootNode.setCenter(Launcher.getMEDEELEL().getContainer());
+        rootNode.setLeft(huvaari.getContainer());
+        rootNode.setRight(homework.getContainer());
+        rootNode.setCenter(medeelel.getContainer());
     }
     
     public static void changeTop(Node node) {
-        TeacherMain.rootNode.setTop(node);
+        teacherMain.rootNode.setTop(node);
     }
     public static void changeBottom(Node node) {
-        TeacherMain.rootNode.setBottom(node);
+        teacherMain.rootNode.setBottom(node);
     }
     public static void changeCenter(Node node) {
-        TeacherMain.rootNode.setCenter(node);
+        teacherMain.rootNode.setCenter(node);
     }
     public static void changeLeft(Node node) {
-        TeacherMain.rootNode.setLeft(node);
+        teacherMain.rootNode.setLeft(node);
     }
     public static void changeRight(Node node) {
-        TeacherMain.rootNode.setRight(node);
+        teacherMain.rootNode.setRight(node);
     }
-    
     
     public Scene getScene() {
         return this.scene;
     }
+    
     
 }
