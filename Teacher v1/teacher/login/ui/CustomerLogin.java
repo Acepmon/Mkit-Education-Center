@@ -1,5 +1,6 @@
-package teacher.login.ui;
+package login.ui;
 //Bold-Erdene//
+import homeworkcheckview.teacherMain;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -11,25 +12,26 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import teacher.launch.Launcher;
+import login.controller.ClientTest;
 
 /*
     CustomerLogin object үүсгэж байхад
     өөрийн зарлагдсан scene object-г
     getScene() функцээр авна.
 */
-public class CustomerLogin implements teacher.config.Config {
+public class CustomerLogin {
     
     private Scene myScene;
 
     public CustomerLogin(Stage myStage) {
+        myStage.setTitle("");
         Pane root =new Pane();
         FlowPane rootNode = new FlowPane(40, 20);
         rootNode.setAlignment(Pos.CENTER);
-        myScene = new Scene(root, STAGE_WIDTH, STAGE_HEIGHT);
+        myScene = new Scene(root, 1024, 768);
         rootNode.setMaxSize(400, 500);
-        rootNode.setLayoutX((STAGE_WIDTH - 400) / 2);
-        rootNode.setLayoutY((STAGE_HEIGHT - 500) / 2);
+        rootNode.setLayoutX((1024 - 400) / 2);
+        rootNode.setLayoutY((768 - 500) / 2);
         root.setStyle("-fx-background-color: #fff");
      
        
@@ -44,7 +46,7 @@ public class CustomerLogin implements teacher.config.Config {
         lbl.setStyle("-fx-text-fill: white;");
         
         
-        Image wall = new Image("teacher/resource/wall5.jpg");
+        Image wall = new Image("login/ui/wall5.jpg");
         ImageView wall2 = new ImageView(wall);
         wall2.setFitHeight(780);
         wall2.setFitWidth(1050);
@@ -103,9 +105,16 @@ public class CustomerLogin implements teacher.config.Config {
         btn.setStyle("-fx-background-color: #2C53BF; -fx-text-fill: white;");
         btn.setPrefSize(200, 40);
         btn.setOnAction(ae -> {
-            Launcher.setScene(Launcher.getTEACHER().getScene());
-            String fld1 = (fld.getText());
-            pnl.setVisible(true);
+
+            Boolean response =(Boolean) ClientTest.RequestAjluulah("Account", fld.getText()+"::"+fld2.getText());
+            
+            if (response) {
+                System.out.println("Mon baina");
+                // Undsen mainframe enchee duudaj og
+                // Jishee : test.Testing.setScene(new teacherMain().getScene());
+            } else {
+                pnl.setVisible(true);
+            }
         });
 
         /*Болих button*/
@@ -116,7 +125,8 @@ public class CustomerLogin implements teacher.config.Config {
             myStage.close();
             
         });
-        
+
+     
         rootNode.requestFocus();
         rootNode.getChildren().addAll(lbl, pnl, fld, fld2, box1, box2, lbl2, btn, btn2);
     }

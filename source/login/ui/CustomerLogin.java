@@ -109,11 +109,11 @@ public class CustomerLogin {
             Boolean response =(Boolean) ClientTest.RequestAjluulah("Account", fld.getText()+"::"+fld2.getText());
             
             if (response) {
+                System.out.println("Mon baina");
                 // Undsen mainframe enchee duudaj og
                 // Jishee : test.Testing.setScene(new teacherMain().getScene());
             } else {
                 pnl.setVisible(true);
-                
             }
         });
 
