@@ -106,13 +106,26 @@ public class CustomerLogin {
         btn.setPrefSize(200, 40);
         btn.setOnAction(ae -> {
 
-            Boolean response =(Boolean) ClientTest.RequestAjluulah("Account", fld.getText()+"::"+fld2.getText());
             
-            if (response) {
-                System.out.println("Mon baina");
-                // Undsen mainframe enchee duudaj og
-                // Jishee : test.Testing.setScene(new teacherMain().getScene());
-            } else {
+            // String оюутан::true
+            String response =(String) ClientTest.RequestAjluulah("Account", fld.getText()+"::"+fld2.getText());
+            
+            String[] responseArr = response.split("::");
+            String type = responseArr[0];
+            String res = responseArr[1];
+            
+            if (res.equalsIgnoreCase("true")) {
+                
+                /*оюутан,админ,менежэр*/
+                // "багш" гэсний оронд айл нэгийн бичэж өгнө үү
+                if (type.equalsIgnoreCase("багш")) {
+                    // Undsen mainframe enchee duudaj og
+                    // Jishee : test.Testing.setScene(new teacherMain().getScene());
+                } else {
+                    pnl.setVisible(true);
+                    ((Label) pnl.getChildren().get(0)).setText("Зөвхөн багш нэвтрэх ёстой!");
+                }
+            } else if (res.equalsIgnoreCase("false")) {
                 pnl.setVisible(true);
             }
         });
