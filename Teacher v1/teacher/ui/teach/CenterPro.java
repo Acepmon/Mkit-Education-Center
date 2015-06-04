@@ -17,6 +17,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
@@ -38,30 +40,24 @@ public class CenterPro {
         CenterProStage = new Stage();
         
         GridPane gridPane = new GridPane();
-        gridPane.setPadding(new Insets(25,20,50,20));
+        gridPane.setPadding(new Insets(0,0,26,0));
         gridPane.setHgap(15); gridPane.setVgap(15);
-        Scene scene = new Scene(gridPane, 480, 708);
-        gridPane.setStyle("-fx-background-color: skyblue, derive(skyblue, 10%)");
+        gridPane.setPrefSize(510, 708);
+        gridPane.setStyle("-fx-background-color:snow , derive(snow, 10%)");
         
         FlowPane text = new FlowPane();
-        text.setPrefSize(400, 658);
-        
-        
-        
+//        text.setPrefSize(250, 500);
         
         Label nameLbl = new Label("Багшын мэдлээл");
         nameLbl.setAlignment(Pos.CENTER);
-        nameLbl.setPrefSize(200, 60);
-        
+        nameLbl.setPrefSize(520, 80);
         nameLbl.setFont(javafx.scene.text.Font.font("Arial",FontWeight.BOLD, 20));
         nameLbl.setStyle("-fx-background-color: #E6E6E6; -fx-padding: 10px;");
-        gridPane.add(nameLbl, 1,0, 2,1);
-       
-        
+        gridPane.add(nameLbl, 0,0, 8,1);
+              
         Label labelClass = new Label("Class:");
         labelClass.setPrefWidth(80);
-        
-        
+                
         ComboBox comboClass = new ComboBox();
         comboClass.setPrefSize(120,10);
         comboClass.getItems().addAll("JAVA","C#", "GENRAL LEVEL");
@@ -73,7 +69,6 @@ public class CenterPro {
        
         gridPane.add(labelClass, 1, 1);
         gridPane.add(comboClass, 2, 1);    
-       
        
         Label comboText = new Label("Зэрэг");
         comboText.setPrefWidth(80);
@@ -95,7 +90,7 @@ public class CenterPro {
         techTx.setEditable(false);
         techTx.setText("HGH90956asd");
         gridPane.add( techID, 3, 5,1,1);
-        gridPane.add( techTx, 4,5,2,1);
+        gridPane.add( techTx, 4,5,4,1);
           
         Label user = new Label("First name:");
         user.setPrefWidth(80);
@@ -183,6 +178,13 @@ public class CenterPro {
         image.setImage(image_1);
         gridPane.add(image, 4, 1,1,4);
         
+        image.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+                image.setStyle("-fx-image-color:snow , derive(snow, 10%)");
+            }
+        });
 //        text.getChildren().addAll(gridPane);
 //        text.setId("panel");
         
@@ -209,7 +211,7 @@ public class CenterPro {
         
  
         scp = new ScrollPane(gridPane);
-//        gridPane.getChildren().addAll( edit, cancel);
+
     }
     public ScrollPane getContainer() {
         return this.scp;

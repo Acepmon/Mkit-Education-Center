@@ -31,6 +31,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
@@ -38,6 +39,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -53,10 +55,7 @@ public class teacherMain {
     
     public teacherMain(){
         Pane root = new Pane();
-        
-        
-        
-        
+   
         rootNode = new BorderPane();        
         scene = new Scene(root, teacher.config.Config.STAGE_WIDTH, teacher.config.Config.STAGE_HEIGHT);
         
@@ -76,7 +75,7 @@ public class teacherMain {
         VBox s = new VBox();
         s.setAlignment(Pos.BASELINE_RIGHT);
         s.setPrefSize(150, 160);   
-        s.setPadding(new Insets(5, 5, 10, 5));
+        s.setPadding(new Insets(2, 10, 10, 10));
         s.setVisible(false);
         s.setLayoutX(teacher.config.Config.STAGE_WIDTH-164);
         s.setLayoutY(60);
@@ -126,41 +125,40 @@ public class teacherMain {
         
         Label teach = new Label("Багш ");
         teach.setPrefSize(150, 60);
+//        teach.setTextFill(null);
         teach.setFont(Font.font("Arial", FontWeight.BOLD, 26));
         teach.setAlignment(Pos.BASELINE_CENTER);
-        teach.setId("cyan");
+        teach.setId("downmenu");
+        
+      
+
      
+        
         t.getChildren().add(teach);        
         t.setPadding(new Insets(0, 0, 0, 260));
         
         
         Label other = new Label(" Бусад");
-        other.setPrefSize(150, 60);
+        other.setPrefSize(150, 32);
         other.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 14));
-        other.setAlignment(Pos.CENTER_LEFT);
+        other.setStyle("-fx-text-fill:darkgrey");
+        other.setId("downmenu");
+//        other.setAlignment(Pos.CENTER_LEFT);
         other.setOnMouseExited(ae ->{
             s.setCursor(Cursor.DEFAULT);
-            other.setStyle("-fx-text-fill:Black");
+            
         });
         other.setOnMouseMoved(ae-> {
-        other.setStyle("-fx-text-fill:Green");
+      
         s.setCursor(Cursor.MOVE);
         });
-        other.backgroundProperty();
-        other.setOnMousePressed(new EventHandler<MouseEvent>() {
-
-            @Override
-            public void handle(MouseEvent event) {
-            }
-        });
-        
-        
-        
+   
+   
         Label profile =new Label(" Мэдээлэл");
-        profile.setPrefSize(150, 60);
-        profile.setAlignment(Pos.BOTTOM_LEFT);
-        profile.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 14));
-        profile.setId("btn");
+        profile.setPrefSize(150, 32);
+        profile.setId("downmenu");
+//        profile.setAlignment(Pos.BOTTOM_LEFT);
+        profile.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD,14));
         profile.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -174,10 +172,10 @@ public class teacherMain {
         
         
         Label homework = new Label (" Даалгавар");
-        homework.setPrefSize(150, 60);
-        homework.setAlignment(Pos.CENTER_LEFT);
-        homework.setFont(Font.font("Arial",FontWeight.EXTRA_BOLD, 14));
-        homework.setId("btn");
+        homework.setPrefSize(150, 32);
+//        homework.setAlignment(Pos.CENTER_LEFT);
+        homework.setFont(Font.font("Arial",FontWeight.BOLD, 14));
+        homework.setId("downmenu");
         homework.setOnMousePressed(new EventHandler<MouseEvent>() {
 
             @Override
@@ -192,10 +190,10 @@ public class teacherMain {
         });
         
         Label set = new Label(" Тохиргоо");
-        set.setPrefSize(150, 60);
+        set.setPrefSize(150, 32);
         set.setAlignment(Pos.CENTER_LEFT);
         set.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 14));
-        set.setId("btn");
+        set.setId("downmenu");
         set.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
@@ -209,19 +207,17 @@ public class teacherMain {
         });
         
         Label log = new Label(" Гарах");
-        log.setPrefSize(150, 60);
-        log.setAlignment(Pos.CENTER_LEFT);
+//        log.setAlignment(Pos.CENTER_LEFT);
         log.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 14));
-        log.setId("btn");
+        log.setPrefSize( 150, 32);
+//        log.setStyle("-fx-Background-color:#808080");
+        log.setId("downmenu");
         log.setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
                 Logout log = new Logout(Launcher.getLogoutStage());
-                if(s.isVisible()){
-                    s.setVisible(false);
-                }
-                
+                                           
             }
         });
      
