@@ -11,12 +11,25 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.TextAlignment;
 
 public class Report{
     private Pane reportPane;
 
+    ObservableList<ReportObj> data=FXCollections.observableArrayList(
+            new ReportObj("Java_001", "Цогтбаяр", "5", "5", "5", "5", "5", "25"),
+            new ReportObj("Java_002", "Бадрал", "5", "5", "5", "5", "5", "25"),
+            new ReportObj("Java_003", "Даваасүрэн", "5", "5", "5", "5", "5", "25"),
+            new ReportObj("Java_004", "Сугар", "5", "5", "5", "5", "5", "25"),
+            new ReportObj("Java_005", "Хангай", "5", "5", "5", "5", "5", "25"),
+            new ReportObj("Java_006", "Эрдэнэ-Очир", "5", "5", "5", "5", "5", "25"),
+            new ReportObj("Java_007", "Болд-Эрдэнэ", "5", "5", "5", "5", "5", "25"),
+            new ReportObj("Java_008", "Тэмүүжин", "5", "5", "5", "5", "5", "25")
+            
+    );
+    
     public Pane getReportPane() {
         return reportPane;
     }
@@ -101,31 +114,57 @@ public class Report{
         tableView.setLayoutY(150);
         tableView.setLayoutX(55);
                 
+        TableColumn idCol=new TableColumn("Сурагчдын код");
+        idCol.setCellValueFactory(new PropertyValueFactory<>("code"));
+        idCol.setMaxWidth(150);
+        idCol.setMinWidth(150);
+        
         TableColumn nameCol = new TableColumn("Сурагчдын нэрс");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameCol.setMaxWidth(150);
         nameCol.setMinWidth(150);
         
         TableColumn mondayCol = new TableColumn("Даваа");
+        mondayCol.setCellValueFactory(new PropertyValueFactory<>("monday"));
         mondayCol.setMaxWidth(100);
         mondayCol.setMinWidth(100);
         
         TableColumn tuesdayCol = new TableColumn("Мягмар");
+        tuesdayCol.setCellValueFactory(new PropertyValueFactory<>("tuesday"));
         tuesdayCol.setMaxWidth(100);
         tuesdayCol.setMinWidth(100);
         
         TableColumn wednesdayCol = new TableColumn("Лхагва");
+        wednesdayCol.setCellValueFactory(new PropertyValueFactory<>("wednesday"));
         wednesdayCol.setMaxWidth(100);
         wednesdayCol.setMinWidth(100);
         
         TableColumn thursdayCol = new TableColumn("Пүрэв");
+        thursdayCol.setCellValueFactory(new PropertyValueFactory<>("thursday"));
         thursdayCol.setMaxWidth(100);
         thursdayCol.setMinWidth(100);
         
         TableColumn fridayCol = new TableColumn("Баасан");
+        fridayCol.setCellValueFactory(new PropertyValueFactory<>("friday"));
         fridayCol.setMaxWidth(100);
         fridayCol.setMinWidth(100);
         
-        tableView.getColumns().addAll(nameCol, mondayCol, tuesdayCol, wednesdayCol,thursdayCol,fridayCol);
+        TableColumn totalCol=new TableColumn("Нийт");
+        totalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
+        totalCol.setMaxWidth(100);
+        totalCol.setMinWidth(100);
+        
+        tableView.setItems(data);
+        tableView.getColumns().addAll(
+                idCol,
+                nameCol, 
+                mondayCol, 
+                tuesdayCol, 
+                wednesdayCol,
+                thursdayCol,
+                fridayCol,
+                totalCol
+        );
      
         
         Button printButton = new Button("Хэвлэх");
@@ -149,7 +188,8 @@ public class Report{
                 endLabel, 
                 endDatePicker,
                 printButton,
-                tableView);
+                tableView
+        );
     }
     
 }

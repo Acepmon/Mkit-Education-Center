@@ -11,6 +11,8 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 public class Manager {
     
@@ -81,11 +83,33 @@ public class Manager {
         Label managerNameLbl=new Label("Менежерийн нэр :");
         managerNameLbl.setPrefSize(120, 25);
         
-        ObservableList<String> settings=FXCollections.observableArrayList("Хувийн мэдээлэл", "Тохиргоо", "Бусад", "Гарах");
+        ObservableList<String> settings=FXCollections.observableArrayList("Хувийн мэдээлэл", "Бусад", "Гарах");
+        
+        
         ComboBox settingsCmBox=new ComboBox<String>(settings);
         settingsCmBox.setValue("Профайл");
         settingsCmBox.setPrefSize(150, 25);
         settingsCmBox.setId("settings");
+        settingsCmBox.setOnAction(ae-> {
+            if(settingsCmBox.getValue().equals("Хувийн мэдээлэл")) {
+                settingsCmBox.setValue("Профайл");
+                Stage managerStage=new Stage();
+                ManagerProfile profile=new ManagerProfile();
+                profile.start(managerStage);
+            }
+            
+            else if(settingsCmBox.getValue().equals("Бусад")) {
+                settingsCmBox.setValue("Профайл");
+            }
+            
+            else if(settingsCmBox.getValue().equals("Гарах")) {
+                settingsCmBox.setValue("Профайл");
+                int answer = JOptionPane.showConfirmDialog(null, "Гарах уу?");
+                if(answer == JOptionPane.YES_OPTION) {
+                    Launcher.getStage().close();
+                }
+            }
+        });
         
         hbox.getChildren().addAll(managerNameLbl, settingsCmBox);
         return hbox;

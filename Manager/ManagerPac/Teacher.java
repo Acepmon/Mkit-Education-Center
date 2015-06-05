@@ -17,6 +17,12 @@ import javafx.scene.text.Font;
 public class Teacher {
     private Pane teacherPane;
 
+    ObservableList<TeacherObj> data=FXCollections.observableArrayList(
+            new TeacherObj("Teacher_001", "Мэдэхгүй", "C#", "99777777"),
+            new TeacherObj("Teacher_002", "Мэдэхгүй", "C#, Java", "99888888"),
+            new TeacherObj("Teacher_003", "Одхүү", "Java", "99999999")
+    );
+    
     public Pane getTeacherPane() {
         return teacherPane;
     }
@@ -359,22 +365,26 @@ public class Teacher {
     
     public void TeacherData() {
         TableColumn idCol=new TableColumn("Код");
-        idCol.setMaxWidth(50);
-        idCol.setMinWidth(50);
+        idCol.setCellValueFactory(new PropertyValueFactory<>("code"));
+        idCol.setMaxWidth(80);
+        idCol.setMinWidth(80);
         
         TableColumn nameCol=new TableColumn("Нэр");
-        nameCol.setMaxWidth(90);
-        nameCol.setMinWidth(90);
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameCol.setMaxWidth(70);
+        nameCol.setMinWidth(70);
         
         TableColumn classCol=new TableColumn("Анги");
-        classCol.setMaxWidth(70);
-        classCol.setMinWidth(70);
+        classCol.setCellValueFactory(new PropertyValueFactory<>("className"));
+        classCol.setMaxWidth(60);
+        classCol.setMinWidth(60);
         
         TableColumn mobileCol=new TableColumn("Утасны дугаар");
+        mobileCol.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         mobileCol.setMaxWidth(100);
         mobileCol.setMinWidth(100);
         
+        tableView.setItems(data);
         tableView.getColumns().addAll(idCol, nameCol, classCol, mobileCol);
-        
     }
 }

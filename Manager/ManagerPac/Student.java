@@ -18,6 +18,17 @@ import javafx.stage.Stage;
 public class Student {
     private Pane studentPane;
 
+    ObservableList<StudentObj> data=FXCollections.observableArrayList(
+            new StudentObj("Java_001", "Цогтбаяр", "Java", "D10"),
+            new StudentObj("Java_002", "Бадрал", "Java", "D11"),
+            new StudentObj("Java_003", "Даваасүрэн", "Java", "D8"),
+            new StudentObj("Java_004", "Сугар", "Java", "D22"),
+            new StudentObj("Java_005", "Хангай", "Java", "D23"),
+            new StudentObj("Java_006", "Эрдэнэ-Очир", "Java", "D19"),
+            new StudentObj("Java_007", "Болд-Эрдэнэ", "Java", "D25"),
+            new StudentObj("Java_008", "Тэмүүжин", "Java", "D05")
+    );
+    
     public Pane getStudentPane() {
         return studentPane;
     }
@@ -376,21 +387,26 @@ public class Student {
     
     public void StudentData() {
         TableColumn idCol=new TableColumn("Код");
-        idCol.setMaxWidth(50);
-        idCol.setMinWidth(50);
+        idCol.setCellValueFactory(new PropertyValueFactory<>("code"));
+        idCol.setMaxWidth(80);
+        idCol.setMinWidth(80);
         
         TableColumn nameCol=new TableColumn("Нэр");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameCol.setMaxWidth(90);
         nameCol.setMinWidth(90);
         
         TableColumn classCol=new TableColumn("Анги");
-        classCol.setMaxWidth(70);
-        classCol.setMinWidth(70);
+        classCol.setCellValueFactory(new PropertyValueFactory<>("className"));
+        classCol.setMaxWidth(40);
+        classCol.setMinWidth(40);
         
         TableColumn computerCol=new TableColumn("Компьютер №");
+        computerCol.setCellValueFactory(new PropertyValueFactory<>("comNumber"));
         computerCol.setMaxWidth(100);
         computerCol.setMinWidth(100);
         
+        tableView.setItems(data);
         tableView.getColumns().addAll(idCol, nameCol, classCol, computerCol);
         
     }

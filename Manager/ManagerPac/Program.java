@@ -1,6 +1,8 @@
 package ManagerPac;
 
 import java.time.LocalDate;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -8,11 +10,18 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 
 public class Program {
     Pane programPane;
-
+    
+    ObservableList<ProgramObj> data=FXCollections.observableArrayList(
+            new ProgramObj("Заал авах", "5-р сургууль дээр орой 19:30 цагт", "2015-12-12", "2015-12-12"),
+            new ProgramObj("Dota 2 тэмцээн", "MKIT сургууль дээр өдөр 15:30 цагт", "2015-01-01", "2015-01-01"),
+            new ProgramObj("Counter Strike тэмцээн", "MKIT сургууль дээр өдөр 14:30 цагт", "2015-02-02", "2015-02-02")
+    );
+    
     public Pane getProgramPane() {
         return programPane;
     }
@@ -153,24 +162,28 @@ public class Program {
         weekTab.getTabs().addAll(todayTab,allTab,mondayTab, tuesdayTab, wednesdayTab, thursdayTab, fridayTab, saturdayTab, sundayTab);
 
         TableColumn nameCol = new TableColumn("Нэр");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameCol.setMaxWidth(200);
         nameCol.setMinWidth(200);
         
         TableColumn descriptionCol = new TableColumn("Тодорхойлолт");
-        descriptionCol.setMaxWidth(250);
-        descriptionCol.setMinWidth(250);
+        descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        descriptionCol.setMaxWidth(395);
+        descriptionCol.setMinWidth(395);
         
         
-        TableColumn startCol = new TableColumn("Эхэлсэн огноо");
+        TableColumn startCol = new TableColumn("Эхлэх огноо");
+        startCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         startCol.setMaxWidth(150);
         startCol.setMinWidth(150);
         
         TableColumn endCol = new TableColumn("Дуусах огноо");
+        endCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         endCol.setMaxWidth(150);
         endCol.setMinWidth(150);
         
         programTableView.getColumns().addAll(nameCol, descriptionCol, startCol, endCol);
-        
+        programTableView.setItems(data);
         programPane.getChildren().addAll(todayLabel, startLabel, startDatePicker, endLabel, endDatePicker, searchButton, weekTab);
     }
 }

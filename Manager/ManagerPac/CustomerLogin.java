@@ -1,6 +1,6 @@
 package ManagerPac;
 
-import ManagerPac.Launcher;
+import Controller.ClientTest;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -104,9 +104,26 @@ public class CustomerLogin {
         btn.setStyle("-fx-background-color: #2C53BF; -fx-text-fill: white;");
         btn.setPrefSize(200, 40);
         btn.setOnAction(ae -> {
-            Launcher.setScene(Launcher.getMANAGER().getScene());
-            String fld1 = (fld.getText());
-            pnl.setVisible(true);
+            
+            String response= (String) ClientTest.RequestAjluulah("Account", fld.getText()+"::"+fld2.getText());
+            String[] responseArr=response.split("::");
+            String type=responseArr[0];
+            String res=responseArr[1];
+            
+            if(res.equalsIgnoreCase("true")) {
+                if(type.equalsIgnoreCase("менежер")) {
+                    Launcher.setScene(Launcher.getMANAGER().getScene());
+                }
+                
+                else {
+                    pnl.setVisible(true);
+                    ((Label) pnl.getChildren().get(0)).setText("Зөвхөн менежер нэвтрэх ёстой!");
+                }
+            }
+            
+            else if(res.equalsIgnoreCase("false")) {
+                pnl.setVisible(true);
+            }
         });
 
         /*Болих button*/

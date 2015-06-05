@@ -48,6 +48,9 @@ public class AddStudent extends Application {
     private ComboBox<String> classCmBox;
     private ComboBox<String> comCmBox;
     
+    private Label emailLbl;
+    private TextField emailFld;
+    
     private Button registerBtn;
     private Button cancelBtn;
     
@@ -165,6 +168,7 @@ public class AddStudent extends Application {
         addressLbl.setLayoutY(350);
         
         addressArea=new TextArea();
+        addressArea.setPromptText("Одоо байрлаж буй хаяг");
         addressArea.setPrefSize(255, 50);
         addressArea.setLayoutX(25);
         addressArea.setLayoutY(380);
@@ -216,11 +220,21 @@ public class AddStudent extends Application {
         comCmBox.setLayoutX(170);
         comCmBox.setLayoutY(560);
         
+        emailLbl=new Label("И-мэйл хаяг");
+        emailLbl.setId("regLbl");
+        emailLbl.setFont(Font.font("Verdana", 15));
+        emailLbl.setPrefSize(140, 25);
+        emailLbl.setLayoutX(25);
+        emailLbl.setLayoutY(610);
+        
+        emailFld=new TextField();
+        EmailField();
+        
         registerBtn=new Button("Бүртгүүлэх");
         registerBtn.setFont(Font.font("Verdana", 15));
         registerBtn.setPrefSize(120, 30);
         registerBtn.setLayoutX(25);
-        registerBtn.setLayoutY(630);
+        registerBtn.setLayoutY(680);
         registerBtn.setOnAction(ae -> {
             
         });
@@ -233,7 +247,7 @@ public class AddStudent extends Application {
         });
         cancelBtn.setPrefSize(120, 30);
         cancelBtn.setLayoutX(160);
-        cancelBtn.setLayoutY(630);
+        cancelBtn.setLayoutY(680);
         
         
         pane.getChildren().addAll(
@@ -258,6 +272,8 @@ public class AddStudent extends Application {
                 classLbl,
                 classCmBox,
                 comCmBox,
+                emailLbl,
+                emailFld,
                 cancelBtn,
                 registerBtn
         );
@@ -267,9 +283,10 @@ public class AddStudent extends Application {
         
         
         
-        Scene scene=new Scene(pane, 305, 680);
+        Scene scene=new Scene(pane, 305, 730);
         addStudentStage.setTitle("Оюутан нэмэх");
         addStudentStage.setScene(scene);
+        addStudentStage.setResizable(false);
         addStudentStage.show();
     }
 
@@ -354,6 +371,13 @@ public class AddStudent extends Application {
                 yyyyFld.textProperty().setValue(value.substring(0, limit));
             }
         });
+    }
+    
+    private void EmailField() {
+        emailFld.setPrefSize(255, 25);
+        emailFld.setLayoutX(25);
+        emailFld.setLayoutY(640);
+        emailFld.setPromptText("Жишээ нь: _____@_____.com");
     }
     
     public void GetUserInfo() {

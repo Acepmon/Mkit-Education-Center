@@ -65,6 +65,7 @@
     -fx-padding:5px 37px 5px 37px;
 }
 
-#settings {
+#column {
+    -fx-padding:0 10px 0 10px;
     
 }
