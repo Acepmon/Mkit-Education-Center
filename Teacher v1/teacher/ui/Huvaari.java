@@ -1,17 +1,15 @@
-package surgaltin.alba;
+package teacher.ui;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import static surgaltin.alba.teacherMain.homework;
-import static surgaltin.alba.teacherMain.huvaari;
-import static surgaltin.alba.teacherMain.medeelel;
+import teacher.launch.Launcher;
 
-public class huvaari {
+public class Huvaari {
     
     private FlowPane leftFp;
     
-    public huvaari(){
+    public Huvaari(){
         
         leftFp = new FlowPane(20,20);
         leftFp.setPrefSize(250, 708);
@@ -38,9 +36,10 @@ public class huvaari {
         Label irtsLb = new Label("Ирц бүртгэх");
         irtsLb.setPrefSize(200, 20);
         irtsLb.setId("btns");
-        irtsLb.setOnMousePressed(ae -> {
-            teacherMain.changeRight(null);
-            teacherMain.changeCenter(teacherMain.irts.getContainer());
+        irtsLb.setOnMousePressed(boov -> {
+            TeacherMain.changeLeft(Launcher.getHUVAARI().getContainer());
+            TeacherMain.changeCenter(Launcher.getIRTS().getContainer());
+            TeacherMain.changeRight(null);
         });
         
         irtsLb.setAlignment(Pos.CENTER);
@@ -61,14 +60,8 @@ public class huvaari {
         
         ///events
         
-
-        
-        
-        
-        
-        
         textFp.getChildren().addAll(irtsLb,dunLb,idevhLb,allLb);
-        leftFp.getChildren().addAll(nameLbl, new inner_huvaari().getContainer(), textFp);
+        leftFp.getChildren().addAll(nameLbl, new Inner_huvaari().getContainer(), textFp);
         leftFp.setId("border");
     }
     public FlowPane getContainer() {

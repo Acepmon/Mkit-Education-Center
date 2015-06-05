@@ -1,19 +1,22 @@
-
-package surgaltin.alba;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package teacher.ui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
-public class inner_homework {
+public class Inner_homework {
 private ScrollPane scroll;
     private FlowPane inner_;
 
-    public inner_homework() {
+    public Inner_homework() {
 
         inner_ = new FlowPane(10, 10);
         inner_.setPrefSize(220, 500);
@@ -75,12 +78,7 @@ private ScrollPane scroll;
         oyutan3.getChildren().addAll(colorPane3,nameLbl3);
         oyutan4.getChildren().addAll(colorPane4,nameLbl4);
         
-        RadioButton radio = new RadioButton("radio");
-        radio.setId("radio-button");
-        
-        
-        
-        inner_.getChildren().addAll(oyutan, oyutan1,oyutan2, oyutan3,oyutan4, radio);
+        inner_.getChildren().addAll(oyutan, oyutan1,oyutan2, oyutan3,oyutan4);
         scroll = new ScrollPane(inner_);
     }
 

@@ -9,18 +9,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import teacher.login.ui.CustomerLogin;
-import teacher.ui.Center;
-import teacher.ui.DaalgavarSend;
-import teacher.ui.Homework;
-import teacher.ui.Huvaari;
-import teacher.ui.Inner_homework;
-import teacher.ui.Inner_huvaari;
-import teacher.ui.Irts;
-import teacher.ui.Medeelel;
-import teacher.ui.Ners;
-import teacher.ui.TeacherMain;
-import teacher.ui.Tree;
-
+import teacher.ui.*;
 /**
  *
  * @author JAVA M2
@@ -42,6 +31,10 @@ public class Launcher extends Application implements teacher.config.Config {
     private static Medeelel MEDEELEL;
     private static Ners NERS;
     private static Tree TREE;
+    private static Tailan_left TAILAN_LEFT;
+    private static Tailan_left_inner TAILAN_LEFT_INNER;
+    private static Tailan_medeelel TAILAN_MEDEELEL;
+    private static Daalgavarshalgah DAALGAVARSHALGAH;
     
     @Override
     public void start(Stage primaryStage) {
@@ -56,6 +49,10 @@ public class Launcher extends Application implements teacher.config.Config {
         stage.setScene(defaultScene);
         stage.show();
         
+        DAALGAVARSHALGAH = new Daalgavarshalgah();
+        TAILAN_MEDEELEL = new Tailan_medeelel();
+        TAILAN_LEFT_INNER = new Tailan_left_inner();
+        TAILAN_LEFT = new Tailan_left();
         INNER_HOMEWORK = new Inner_homework();
         INNER_HUVAARI = new Inner_huvaari();
         CENTER = new Center();
@@ -84,6 +81,10 @@ public class Launcher extends Application implements teacher.config.Config {
     
     public static Scene getDefaultScene() {
         return defaultScene;
+    }
+
+    public static Daalgavarshalgah getDAALGAVARSHALGAH() {
+        return DAALGAVARSHALGAH;
     }
 
     public static TeacherMain getTEACHER() {
@@ -132,6 +133,18 @@ public class Launcher extends Application implements teacher.config.Config {
 
     public static Tree getTREE() {
         return TREE;
+    }
+
+    public static Tailan_left getTAILAN_LEFT() {
+        return TAILAN_LEFT;
+    }
+
+    public static Tailan_left_inner getTAILAN_LEFT_INNER() {
+        return TAILAN_LEFT_INNER;
+    }
+
+    public static Tailan_medeelel getTAILAN_MEDEELEL() {
+        return TAILAN_MEDEELEL;
     }
     
 }

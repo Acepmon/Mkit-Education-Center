@@ -1,6 +1,5 @@
-package login.ui;
+package teacher.login.ui;
 //Bold-Erdene//
-import homeworkcheckview.teacherMain;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -12,33 +11,31 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import login.controller.ClientTest;
+import teacher.controller.ClientTest;
+import teacher.launch.Launcher;
 
 /*
     CustomerLogin object үүсгэж байхад
     өөрийн зарлагдсан scene object-г
     getScene() функцээр авна.
 */
-public class CustomerLogin {
+
+public class CustomerLogin implements teacher.config.Config {
     
     private Scene myScene;
 
     public CustomerLogin(Stage myStage) {
-        myStage.setTitle("");
         Pane root =new Pane();
         FlowPane rootNode = new FlowPane(40, 20);
         rootNode.setAlignment(Pos.CENTER);
-        myScene = new Scene(root, 1024, 768);
+        myScene = new Scene(root, STAGE_WIDTH, STAGE_HEIGHT);
         rootNode.setMaxSize(400, 500);
-        rootNode.setLayoutX((1024 - 400) / 2);
-        rootNode.setLayoutY((768 - 500) / 2);
+        rootNode.setLayoutX((STAGE_WIDTH - 400) / 2);
+        rootNode.setLayoutY((STAGE_HEIGHT - 500) / 2);
         root.setStyle("-fx-background-color: #fff");
-     
-       
      
         myStage.setScene(myScene);
         myStage.setResizable(false);
-       
 
         /*Гарчиг*/
         Label lbl = new Label("Хэрэглэгчийн Нэвтрэх Хэсэг");
@@ -46,7 +43,7 @@ public class CustomerLogin {
         lbl.setStyle("-fx-text-fill: white;");
         
         
-        Image wall = new Image("login/ui/wall5.jpg");
+        Image wall = new Image("teacher/resource/wall5.jpg");
         ImageView wall2 = new ImageView(wall);
         wall2.setFitHeight(780);
         wall2.setFitWidth(1050);
@@ -105,14 +102,30 @@ public class CustomerLogin {
         btn.setStyle("-fx-background-color: #2C53BF; -fx-text-fill: white;");
         btn.setPrefSize(200, 40);
         btn.setOnAction(ae -> {
-
-            Boolean response =(Boolean) ClientTest.RequestAjluulah("Account", fld.getText()+"::"+fld2.getText());
             
-            if (response) {
-                System.out.println("Mon baina");
-                // Undsen mainframe enchee duudaj og
-                // Jishee : test.Testing.setScene(new teacherMain().getScene());
-            } else {
+            String username = fld.getText().isEmpty() ? " " : fld.getText();
+            String password = fld2.getText().isEmpty() ? " " : fld2.getText();
+            
+            // String оюутан::true
+            String response =(String) ClientTest.RequestAjluulah("Account", username+"::"+password);
+            
+            String[] responseArr = response.split("::");
+            String type = responseArr[0];
+            String res = responseArr[1];
+            
+            if (res.equalsIgnoreCase("true")) {
+                
+                /*оюутан,админ,менежэр*/
+                // "багш" гэсний оронд айл нэгийн бичэж өгнө үү
+                if (type.equalsIgnoreCase("багш")) {
+                    // Undsen mainframe enchee duudaj og
+                    // Jishee : test.Testing.setScene(new teacherMain().getScene());
+                    Launcher.setScene(Launcher.getTEACHER().getScene());
+                } else {
+                    pnl.setVisible(true);
+                    ((Label) pnl.getChildren().get(0)).setText("Зөвхөн багш нэвтрэх ёстой!");
+                }
+            } else if (res.equalsIgnoreCase("false")) {
                 pnl.setVisible(true);
             }
         });
@@ -125,12 +138,10 @@ public class CustomerLogin {
             myStage.close();
             
         });
-
-     
+        
         rootNode.requestFocus();
         rootNode.getChildren().addAll(lbl, pnl, fld, fld2, box1, box2, lbl2, btn, btn2);
     }
-
 
     public Scene getScene() {
         return this.myScene;

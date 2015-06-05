@@ -1,4 +1,4 @@
-package surgaltin.alba;
+package teacher.ui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

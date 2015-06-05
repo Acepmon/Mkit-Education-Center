@@ -3,19 +3,18 @@ package teacher.ui;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import teacher.launch.Launcher;
 
-public class homework2 {
+public class Homework2 {
     
     private FlowPane rightFp;
     
-    public homework2(){
+    public Homework2(){
         
         rightFp = new FlowPane(20,20);
         rightFp.setPrefSize(250, 708);
         rightFp.setStyle("-fx-background-color: #F6F6F7");
         rightFp.setAlignment(Pos.CENTER);
-        
+         
         Label nameLbl = new Label("Ирсэн даалгавар");
         nameLbl.setAlignment(Pos.CENTER);
         nameLbl.setPrefSize(250, 60);
@@ -39,7 +38,7 @@ public class homework2 {
         
         rightFp.setId("border");
         textFp.getChildren().addAll(irtsLb,dunLb);
-        rightFp.getChildren().addAll(nameLbl, Launcher.getINNER_HOMEWORK().getContainer(), textFp);
+        rightFp.getChildren().addAll(nameLbl, new Inner_homework().getContainer(), textFp);
     }
     public FlowPane getContainer() {
         return this.rightFp;

@@ -1,5 +1,5 @@
 
-package surgaltin.alba;
+package teacher.ui;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -7,15 +7,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
-import static surgaltin.alba.teacherMain.homework;
-import static surgaltin.alba.teacherMain.huvaari;
-import static surgaltin.alba.teacherMain.medeelel;
+import teacher.launch.Launcher;
 
-public class tailan_left {
+public class Tailan_left {
     
     private FlowPane leftFp;
     
-    public tailan_left(){
+    public Tailan_left(){
         
         leftFp = new FlowPane(20,20);
         leftFp.setPrefSize(250, 708);
@@ -31,11 +29,8 @@ public class tailan_left {
        
         FlowPane huvaariFp = new FlowPane();
         
-        
-        
         TextField searchTf = new TextField();
         searchTf.setPrefSize(140, 20);
-        
         
         Button searchBtn = new Button("Search");
         searchBtn.setPrefSize(60, 20);
@@ -64,7 +59,7 @@ public class tailan_left {
         
         leftFp.setAlignment(Pos.TOP_CENTER);
         searchFp.getChildren().addAll(searchTf,searchBtn, tailanCm );
-        leftFp.getChildren().addAll(nameLbl, searchFp,new Tailan_left_inner().getContainer());
+        leftFp.getChildren().addAll(nameLbl, searchFp,Launcher.getTAILAN_LEFT_INNER().getContainer());
         leftFp.setId("border");
     }
     public FlowPane getContainer() {

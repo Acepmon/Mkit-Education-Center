@@ -1,30 +1,36 @@
+
 package teacher.ui;
 
+import java.awt.event.MouseEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import teacher.config.Config;
-import teacher.launch.Launcher;
 
-public class TeacherMain {
+public class teacherMain_1 {
     
     private static BorderPane rootNode;
     private Scene scene;
-    private TextArea txtarea;
     
     
-    public TeacherMain() {
+    public teacherMain_1(){
+        
         rootNode = new BorderPane();        
         scene = new Scene(rootNode, Config.STAGE_WIDTH, Config.STAGE_HEIGHT);
+        
+        ///// menu bar
         
         FlowPane topFp = new FlowPane();
         scene.getStylesheets().add(getClass().getResource("teacherUiStyle.css").toExternalForm());
         topFp.setStyle("-fx-background-color: #B3B3B3");
         topFp.setPrefHeight(60);
+        
+        
+        
         
         ////Дээд талын хэсэг
         Label mainBtn = new Label("Үндсэн");
@@ -33,9 +39,9 @@ public class TeacherMain {
         mainBtn.setAlignment(Pos.CENTER);
         mainBtn.setId("btn");
         mainBtn.setOnMousePressed(ae -> {
-            TeacherMain.changeLeft(Launcher.getHUVAARI().getContainer());
-            TeacherMain.changeCenter(Launcher.getMEDEELEL().getContainer());
-            TeacherMain.changeRight(Launcher.getHOMEWORK().getContainer());
+//            teacherMain.changeLeft(huvaari.getContainer());
+//            teacherMain.changeRight(homework.getContainer());
+//            teacherMain.changeCenter(medeelel.getContainer());
         });
         
         Label hwBtn = new Label("Даалгавар");
@@ -44,9 +50,9 @@ public class TeacherMain {
         hwBtn.setAlignment(Pos.CENTER);
         hwBtn.setId("btn");
         hwBtn.setOnMousePressed(ae -> {
-            TeacherMain.changeLeft(Launcher.getHUVAARI().getContainer());
-            TeacherMain.changeCenter(Launcher.getDAALGAVARSHALGAH().getContainer());
-            TeacherMain.changeRight(Launcher.getHOMEWORK().getContainer());
+//            teacherMain.changeLeft(huvaari.getContainer());
+//            teacherMain.changeRight(homework.getContainer());
+//            teacherMain.changeCenter(medeelel.getContainer());
         });
         
         Label examBtn = new Label("Шалгалт авах");
@@ -75,34 +81,33 @@ public class TeacherMain {
 //            teacherMain.changeRight(null);
         });
         
-        
-    
-        
         topFp.getChildren().addAll(mainBtn, hwBtn, examBtn, scoreBtn, tailanBtn);
-        
+
         rootNode.setTop(topFp);
-        rootNode.setLeft(Launcher.getHUVAARI().getContainer());
-        rootNode.setCenter(Launcher.getMEDEELEL().getContainer());
-        rootNode.setRight(Launcher.getHOMEWORK().getContainer());
+//        rootNode.setLeft(huvaari.getContainer());
+//        rootNode.setRight(homework.getContainer());
+//        rootNode.setCenter(medeelel.getContainer());
     }
     
-    public static void changeTop(Node node) {
-        TeacherMain.rootNode.setTop(node);
-    }
-    public static void changeBottom(Node node) {
-        TeacherMain.rootNode.setBottom(node);
-    }
-    public static void changeCenter(Node node) {
-        TeacherMain.rootNode.setCenter(node);
-    }
-    public static void changeLeft(Node node) {
-        TeacherMain.rootNode.setLeft(node);
-    }
-    public static void changeRight(Node node) {
-        TeacherMain.rootNode.setRight(node);
-    }
+//    public static void changeTop(Node node) {
+//        teacherMain.rootNode.setTop(node);
+//    }
+//    public static void changeBottom(Node node) {
+//        teacherMain.rootNode.setBottom(node);
+//    }
+//    public static void changeCenter(Node node) {
+//        teacherMain.rootNode.setCenter(node);
+//    }
+//    public static void changeLeft(Node node) {
+//        teacherMain.rootNode.setLeft(node);
+//    }
+//    public static void changeRight(Node node) {
+//        teacherMain.rootNode.setRight(node);
+//    }
     
     public Scene getScene() {
         return this.scene;
     }
+    
+    
 }

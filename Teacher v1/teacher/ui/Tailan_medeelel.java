@@ -1,5 +1,4 @@
-
-package surgaltin.alba;
+package teacher.ui;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;

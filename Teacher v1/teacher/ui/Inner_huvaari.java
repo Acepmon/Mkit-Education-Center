@@ -1,4 +1,4 @@
-package surgaltin.alba;
+package teacher.ui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -7,12 +7,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 
-public class inner_huvaari {
+public class Inner_huvaari {
 
     private ScrollPane scroll;
     private FlowPane inner_;
 
-    public inner_huvaari() {
+    public Inner_huvaari() {
 
         inner_ = new FlowPane(10, 10);
         inner_.setPrefSize(220, 500);
@@ -33,10 +33,6 @@ public class inner_huvaari {
 
         inner_.getChildren().addAll(label_one, sep_one, label_two, sep_two);
         scroll = new ScrollPane(inner_);
-        
-        
-
-        
     }
 
     public ScrollPane getContainer() {

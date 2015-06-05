@@ -1,4 +1,4 @@
-package login.controller;
+package teacher.controller;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

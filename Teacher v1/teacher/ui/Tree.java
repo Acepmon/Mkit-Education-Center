@@ -1,17 +1,12 @@
 package teacher.ui;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 public class Tree {
 
@@ -61,8 +56,6 @@ public class Tree {
         scp.setPrefSize(250, 600);
         
     }
-    
-   
 
     public ScrollPane getContainer() {
         return this.scp;
