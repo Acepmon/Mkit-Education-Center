@@ -2,14 +2,8 @@ package login.ui;
 //Bold-Erdene//
 
 import homeworkcheckview.teacherMain;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.File;
 import javafx.geometry.Pos;
-import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -29,6 +23,8 @@ import login.model.LoginFeature;
  getScene() функцээр авна.
  */
 public class CustomerLogin {
+    
+    public static final File LOGINFILE = new File("login.txt");
 
     private Scene myScene;
 
@@ -149,24 +145,9 @@ public class CustomerLogin {
             }
         });
         
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("login.txt"));
-            String line = br.readLine();
-            String[] arr = line.split("::");
-            String remember = arr[0];
-            if (remember.equals("true")) {
-                String username = arr[1];
-                String password = arr[2];
-                fld.setText(username);
-                fld2.setText(password);
-                box1.setSelected(true);
-            } else {
-                box1.setSelected(false);
-            }
-        } catch (FileNotFoundException ex) {
-        } catch (IOException ex) { 
+        if (LOGINFILE.exists()) {
+            LoginFeature.readLoginFile();
         }
-        
 
         aa.setLayoutX(650);
         aa.setLayoutY(235);
@@ -228,8 +209,8 @@ public class CustomerLogin {
                     // Undsen mainframe enchee duudaj og
                     tmp_username = fld.getText();
                     tmp_password = fld2.getText();
+                    LoginFeature.refreshFile();
                     test.Testing.setScene(new teacherMain().getScene());
-                    LoginFeature loginFeature = new LoginFeature();
                 } else {
 //                  aa.setVisible(true);
                     aa.setVisible(false);
@@ -244,9 +225,6 @@ public class CustomerLogin {
                 aa.setVisible(false);
                 bb.setVisible(false);
             }
-
         }
-    }
-    
-     
+    }    
 }
