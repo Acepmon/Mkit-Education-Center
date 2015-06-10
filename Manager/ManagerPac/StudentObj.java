@@ -1,32 +1,84 @@
 package ManagerPac;
 
 public class StudentObj {
-    String code;
-    String name;
-    String className;
-    String comNumber;
+    private String id;
+    private String lastName;
+    private String firstName;
+    private String mobile;
+    private String email;
+    private String address;
+    private String classId;
+    private String className;
+    private String computer;
+    private String joined;
 
-    public StudentObj(String code, String name, String className, String comNumber) {
-        this.code = code;
-        this.name = name;
+    public StudentObj(String id, String lastName, String firstName, String mobile, String email, String address, String classId, String className, String computer, String joined) {
+        this.id = id;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.mobile = mobile;
+        this.email = email;
+        this.address = address;
+        this.classId = classId;
         this.className = className;
-        this.comNumber = comNumber;
+        this.computer = computer;
+        this.joined = joined;
     }
 
-    public String getCode() {
-        return code;
+    public String getId() {
+        return id;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
     }
 
     public String getClassName() {
@@ -37,11 +89,19 @@ public class StudentObj {
         this.className = className;
     }
 
-    public String getComNumber() {
-        return comNumber;
+    public String getComputer() {
+        return computer;
     }
 
-    public void setComNumber(String comNumber) {
-        this.comNumber = comNumber;
+    public void setComputer(String computer) {
+        this.computer = computer;
+    }
+
+    public String getJoined() {
+        return joined;
+    }
+
+    public void setJoined(String joined) {
+        this.joined = joined;
     }
 }

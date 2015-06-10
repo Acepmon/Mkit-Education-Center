@@ -12,15 +12,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class Program {
     Pane programPane;
     
-    ObservableList<ProgramObj> data=FXCollections.observableArrayList(
-            new ProgramObj("Заал авах", "5-р сургууль дээр орой 19:30 цагт", "2015-12-12", "2015-12-12"),
-            new ProgramObj("Dota 2 тэмцээн", "MKIT сургууль дээр өдөр 15:30 цагт", "2015-01-01", "2015-01-01"),
-            new ProgramObj("Counter Strike тэмцээн", "MKIT сургууль дээр өдөр 14:30 цагт", "2015-02-02", "2015-02-02")
-    );
+    private Button editBtn;
+    private Label infoLbl;
+    
     
     public Pane getProgramPane() {
         return programPane;
@@ -29,10 +28,23 @@ public class Program {
     public void setProgramPane(Pane programPane) {
         this.programPane = programPane;
     }
+    
     private TableView programTableView;
 
     public Program() {
         programPane = new Pane();
+        
+        ObservableList<String> responseData = FXCollections.observableArrayList();
+        responseData.add("Заал авах::5-р сургууль дээр орой 19:30 цагт::2015-12-12::2015-12-12");
+        responseData.add("Dota 2 тэмцээн::MKIT сургууль дээр өдөр 15:30 цагт::2015-01-01::2015-01-01");
+        responseData.add("Counter Strike тэмцээн::MKIT сургууль дээр өдөр 14:30 цагт::2015-02-02::2015-02-02");
+        
+        ObservableList<ProgramObj> data=FXCollections.observableArrayList();
+        for(String str : responseData) {
+            String[] cols = str.split("::");
+            ProgramObj program = new ProgramObj(cols[0], cols[1], cols[2], cols[3]);
+            data.add(program);
+        }
         
         Label todayLabel = new Label("Өнөөдөр :");
         todayLabel.setLayoutX(55);
@@ -67,7 +79,7 @@ public class Program {
         programTableView = new TableView();
         programTableView.setEditable(false);
         programTableView.setPrefWidth(900);
-        programTableView.setPrefHeight(463);
+        programTableView.setPrefHeight(440);
         
         Tab todayTab = new Tab("Өнөөдөр");
         todayTab.setId("tab_today");
@@ -166,24 +178,41 @@ public class Program {
         nameCol.setMaxWidth(200);
         nameCol.setMinWidth(200);
         
-        TableColumn descriptionCol = new TableColumn("Тодорхойлолт");
+        TableColumn descriptionCol = new TableColumn("Тайлбар");
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        descriptionCol.setMaxWidth(395);
-        descriptionCol.setMinWidth(395);
-        
+        descriptionCol.setMaxWidth(398);
+        descriptionCol.setMinWidth(398);
         
         TableColumn startCol = new TableColumn("Эхлэх огноо");
         startCol.setCellValueFactory(new PropertyValueFactory<>("startDate"));
         startCol.setMaxWidth(150);
         startCol.setMinWidth(150);
+        startCol.setId("column");
         
         TableColumn endCol = new TableColumn("Дуусах огноо");
         endCol.setCellValueFactory(new PropertyValueFactory<>("endDate"));
         endCol.setMaxWidth(150);
         endCol.setMinWidth(150);
+        endCol.setId("column");
+        
+        infoLbl=new Label("Хөтөлбөр засах бол дээрх хөтөлбөрүүдээс сонгоод засах товч дарна уу!!");
+        infoLbl.setPrefSize(500, 25);
+        infoLbl.setLayoutX(55);
+        infoLbl.setLayoutY(650);
+        
+        editBtn=new Button("Засах");
+        editBtn.setOnAction(ae-> {
+            String select=((ProgramObj) programTableView.getSelectionModel().getSelectedItem()).getName();
+            Stage editStage=new Stage();
+            EditProgram editProgram=new EditProgram();
+            editProgram.start(editStage);
+        });
+        editBtn.setPrefSize(155, 30);
+        editBtn.setLayoutX(800);
+        editBtn.setLayoutY(650);
         
         programTableView.getColumns().addAll(nameCol, descriptionCol, startCol, endCol);
         programTableView.setItems(data);
-        programPane.getChildren().addAll(todayLabel, startLabel, startDatePicker, endLabel, endDatePicker, searchButton, weekTab);
+        programPane.getChildren().addAll(todayLabel, startLabel, startDatePicker, endLabel, endDatePicker, searchButton, weekTab, infoLbl, editBtn);
     }
 }

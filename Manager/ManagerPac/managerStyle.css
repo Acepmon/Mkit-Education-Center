@@ -19,10 +19,8 @@
 }
 
 #info {
-    -fx-border-color:#666666;
-    -fx-background-color:#efefef;
+    -fx-background-color:#ffffff;
     -fx-text-fill:#666666;
-    -fx-font-family:'Lucidatypewriter', monospace;
 }
 
 #regLbl {
@@ -65,7 +63,11 @@
     -fx-padding:5px 37px 5px 37px;
 }
 
+.text-field.error {
+    -fx-text-box-border:red;
+    -fx-focus-color:red;
+}
+
 #column {
-    -fx-padding:0 10px 0 10px;
-    
+    -fx-alignment:CENTER;
 }

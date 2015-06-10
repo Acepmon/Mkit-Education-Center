@@ -1,14 +1,15 @@
 package ManagerPac;
 
-import javafx.application.Application;
+import Controller.ClientTest;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class ManagerProfile extends Application {
+public class ManagerProfile {
     
     private Pane managerPane;
 
@@ -39,14 +40,14 @@ public class ManagerProfile extends Application {
     private Label joinedLbl;
     private Label passwordLbl;
     
-    private Label idInfoLbl;
-    private Label lastInfoLbl;
-    private Label firstInfoLbl;
-    private Label mobileInfoLbl;
-    private Label emailInfoLbl;
-    private Label addressInfoLbl;
-    private Label joinedInfoLbl;
-    private Label passwordInfoLbl;
+    private TextField idFld;
+    private TextField lastNameFld;
+    private TextField firstNameFld;
+    private TextField mobileFld;
+    private TextField emailFld;
+    private TextField addressFld;
+    private TextField joinedFld;
+    private TextField passwordFld;
     
     private Button editIdBtn;
     private Button editLastBtn;
@@ -57,10 +58,22 @@ public class ManagerProfile extends Application {
     private Button editJoinBtn;
     private Button editPassBtn;
     
-    @Override
+    private ManagerObj manager;
+    
     public void start(Stage managerStage) {
         managerPane=new Pane();
         Scene managerScene=new Scene(managerPane, 590, 510);
+        String responseData = (String) ClientTest.RequestAjluulah("getManProfile", Launcher.getMANAGER().getUserName());
+//        String responseData=("manager001::Suns::Chotgor::88998899::shulam@gmail.com::alialagch::Saran deer amidragch::2015-04-01");
+//                
+//        for(String str: responseData){
+//            String[] cols = str.split("::");
+//            manager = new ManagerObj(cols[0], cols[1], cols[2], cols[3], cols[4], cols[5], cols[6], cols[7]);
+//        }
+        
+        String[] cols = responseData.split("::");
+        manager = new ManagerObj(cols[0], cols[1], cols[2], cols[3], cols[4], cols[5], "", "");
+        
         
         managerInfoLbl=new Label("Менежерийн мэдээлэл");
         managerInfoLbl.setPrefSize(300, 25);
@@ -104,25 +117,11 @@ public class ManagerProfile extends Application {
         idLbl.setLayoutX(25);
         idLbl.setLayoutY(190);
         
-        idInfoLbl=new Label("Description");
-        idInfoLbl.setId("info");
-        idInfoLbl.setFont(Font.font("Verdana", 14));
-        idInfoLbl.setPrefSize(300, 25);
-        idInfoLbl.setLayoutX(185);
-        idInfoLbl.setLayoutY(190);
-        
         lastNameLbl=new Label("Овог");
         lastNameLbl.setFont(Font.font("Verdana", 14));
         lastNameLbl.setPrefSize(150, 25);
         lastNameLbl.setLayoutX(25);
         lastNameLbl.setLayoutY(230);
-        
-        lastInfoLbl=new Label("Description");
-        lastInfoLbl.setId("info");
-        lastInfoLbl.setFont(Font.font("Verdana", 14));
-        lastInfoLbl.setPrefSize(300, 25);
-        lastInfoLbl.setLayoutX(185);
-        lastInfoLbl.setLayoutY(230);
         
         firstNameLbl=new Label("Нэр");
         firstNameLbl.setFont(Font.font("Verdana", 14));
@@ -130,25 +129,11 @@ public class ManagerProfile extends Application {
         firstNameLbl.setLayoutX(25);
         firstNameLbl.setLayoutY(270);
         
-        firstInfoLbl=new Label("Description");
-        firstInfoLbl.setId("info");
-        firstInfoLbl.setFont(Font.font("Verdana", 14));
-        firstInfoLbl.setPrefSize(300, 25);
-        firstInfoLbl.setLayoutX(185);
-        firstInfoLbl.setLayoutY(270);
-        
         mobileLbl=new Label("Утасны дугаар");
         mobileLbl.setFont(Font.font("Verdana", 14));
         mobileLbl.setPrefSize(150, 25);
         mobileLbl.setLayoutX(25);
         mobileLbl.setLayoutY(310);
-        
-        mobileInfoLbl=new Label("Description");
-        mobileInfoLbl.setId("info");
-        mobileInfoLbl.setFont(Font.font("Verdana", 14));
-        mobileInfoLbl.setPrefSize(300, 25);
-        mobileInfoLbl.setLayoutX(185);
-        mobileInfoLbl.setLayoutY(310);
         
         emailLbl=new Label("И-мэйл хаяг");
         emailLbl.setFont(Font.font("Verdana", 14));
@@ -156,25 +141,11 @@ public class ManagerProfile extends Application {
         emailLbl.setLayoutX(25);
         emailLbl.setLayoutY(350);
         
-        emailInfoLbl=new Label("Description");
-        emailInfoLbl.setId("info");
-        emailInfoLbl.setFont(Font.font("Verdana", 14));
-        emailInfoLbl.setPrefSize(300, 25);
-        emailInfoLbl.setLayoutX(185);
-        emailInfoLbl.setLayoutY(350);
-        
         addressLbl=new Label("Гэрийн хаяг");
         addressLbl.setFont(Font.font("Verdana", 14));
         addressLbl.setPrefSize(150, 25);
         addressLbl.setLayoutX(25);
         addressLbl.setLayoutY(390);
-        
-        addressInfoLbl=new Label("Description");
-        addressInfoLbl.setId("info");
-        addressInfoLbl.setFont(Font.font("Verdana", 14));
-        addressInfoLbl.setPrefSize(300, 25);
-        addressInfoLbl.setLayoutX(185);
-        addressInfoLbl.setLayoutY(390);
         
         joinedLbl=new Label("Элссэн огноо");
         joinedLbl.setFont(Font.font("Verdana", 14));
@@ -182,25 +153,68 @@ public class ManagerProfile extends Application {
         joinedLbl.setLayoutX(25);
         joinedLbl.setLayoutY(430);
         
-        joinedInfoLbl=new Label("Description");
-        joinedInfoLbl.setId("info");
-        joinedInfoLbl.setFont(Font.font("Verdana", 14));
-        joinedInfoLbl.setPrefSize(300, 25);
-        joinedInfoLbl.setLayoutX(185);
-        joinedInfoLbl.setLayoutY(430);
-        
         passwordLbl=new Label("Нууц үг");
         passwordLbl.setFont(Font.font("Verdana", 14));
         passwordLbl.setPrefSize(150, 25);
         passwordLbl.setLayoutX(25);
         passwordLbl.setLayoutY(470);
         
-        passwordInfoLbl=new Label("Description");
-        passwordInfoLbl.setId("info");
-        passwordInfoLbl.setFont(Font.font("Verdana", 14));
-        passwordInfoLbl.setPrefSize(300, 25);
-        passwordInfoLbl.setLayoutX(185);
-        passwordInfoLbl.setLayoutY(470);
+        
+        idFld=new TextField();
+        idFld.setId("info");
+        idFld.setPrefSize(300, 25);
+        idFld.setLayoutX(185);
+        idFld.setLayoutY(190);
+        idFld.setText(manager.getId());
+        
+        lastNameFld=new TextField();
+        lastNameFld.setId("info");
+        lastNameFld.setPrefSize(300, 25);
+        lastNameFld.setLayoutX(185);
+        lastNameFld.setLayoutY(230);
+        lastNameFld.setText(manager.getSurname());
+        
+        firstNameFld=new TextField();
+        firstNameFld.setId("info");
+        firstNameFld.setPrefSize(300, 25);
+        firstNameFld.setLayoutX(185);
+        firstNameFld.setLayoutY(270);
+        firstNameFld.setText(manager.getName());
+        
+        mobileFld=new TextField();
+        mobileFld.setId("info");
+        mobileFld.setPrefSize(300, 25);
+        mobileFld.setLayoutX(185);
+        mobileFld.setLayoutY(310);
+        mobileFld.setText(manager.getPhone());
+        
+        emailFld=new TextField();
+        emailFld.setId("info");
+        emailFld.setPrefSize(300, 25);
+        emailFld.setLayoutX(185);
+        emailFld.setLayoutY(350);
+        emailFld.setText(manager.getEmail());
+        
+        addressFld=new TextField();
+        addressFld.setId("info");
+        addressFld.setPrefSize(300, 25);
+        addressFld.setLayoutX(185);
+        addressFld.setLayoutY(390);
+        addressFld.setText(manager.getAddress());
+        
+        joinedFld=new TextField();
+        joinedFld.setId("info");
+        joinedFld.setPrefSize(300, 25);
+        joinedFld.setLayoutX(185);
+        joinedFld.setLayoutY(430);
+        joinedFld.setText(manager.getJoinedDate());
+        
+        passwordFld=new TextField();
+        passwordFld.setId("info");
+        passwordFld.setPrefSize(300, 25);
+        passwordFld.setLayoutX(185);
+        passwordFld.setLayoutY(470);
+        passwordFld.setText(manager.getPassword());
         
         editIdBtn=new Button("Засах");
         editIdBtn.setFont(Font.font("Verdana", 14));
@@ -258,21 +272,21 @@ public class ManagerProfile extends Application {
                 joinDateLbl,
                 browseBtn,
                 idLbl,
-                idInfoLbl,
                 lastNameLbl,
-                lastInfoLbl,
                 firstNameLbl,
-                firstInfoLbl,
                 mobileLbl,
-                mobileInfoLbl,
                 emailLbl,
-                emailInfoLbl,
                 addressLbl,
-                addressInfoLbl,
                 joinedLbl,
-                joinedInfoLbl,
                 passwordLbl,
-                passwordInfoLbl,
+                idFld,
+                lastNameFld,
+                firstNameFld,
+                mobileFld,
+                emailFld,
+                addressFld,
+                joinedFld,
+                passwordFld,
                 editIdBtn,
                 editLastBtn,
                 editFirstBtn,
@@ -283,12 +297,10 @@ public class ManagerProfile extends Application {
                 editPassBtn
         );
         
+        managerScene.getStylesheets().add(getClass().getResource("managerStyle.css").toExternalForm());
+        
         managerStage.setResizable(false);
         managerStage.setScene(managerScene);
         managerStage.show();
-    }
-    
-    public static void main(String[] args) {
-        launch(args);
     }
 }

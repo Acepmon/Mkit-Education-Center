@@ -1,40 +1,38 @@
 package ManagerPac;
 
 public class ReportObj {
-    String code;
-    String name;
-    String monday;
-    String tuesday;
-    String wednesday;
-    String thursday;
-    String friday;
-    String total;
+    private String studId;
+    private String studName;
+    private String monday;
+    private String tuesday;
+    private String wednesday;
+    private String thursday;
+    private String friday;
 
-    public ReportObj(String code, String name, String monday, String tuesday, String wednesday, String thursday, String friday, String total) {
-        this.code = code;
-        this.name = name;
+    public ReportObj(String studId, String studName, String monday, String tuesday, String wednesday, String thursday, String friday) {
+        this.studId = studId;
+        this.studName = studName;
         this.monday = monday;
         this.tuesday = tuesday;
         this.wednesday = wednesday;
         this.thursday = thursday;
         this.friday = friday;
-        this.total = total;
     }
 
-    public String getCode() {
-        return code;
+    public String getStudId() {
+        return studId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setStudId(String studId) {
+        this.studId = studId;
     }
 
-    public String getName() {
-        return name;
+    public String getStudName() {
+        return studName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setStudName(String studName) {
+        this.studName = studName;
     }
 
     public String getMonday() {
@@ -76,14 +74,4 @@ public class ReportObj {
     public void setFriday(String friday) {
         this.friday = friday;
     }
-
-    public String getTotal() {
-        return total;
-    }
-
-    public void setTotal(String total) {
-        this.total = total;
-    }
-    
-    
 }

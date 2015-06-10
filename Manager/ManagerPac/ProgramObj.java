@@ -1,6 +1,5 @@
 package ManagerPac;
 
-
 public class ProgramObj {
     String name;
     String description;
@@ -45,6 +44,4 @@ public class ProgramObj {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
-    
-    
 }

@@ -1,9 +1,11 @@
 package ManagerPac;
 
 import java.awt.event.KeyEvent;
+import java.util.Collections;
 import javafx.application.Application;
 import javafx.beans.Observable;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
@@ -67,8 +69,7 @@ public class AddStudent extends Application {
     private String className;
     private String computerNumber;
     
-    private int count;
-    
+    @Override
     public void start(Stage addStudentStage) {
         Pane pane=new Pane();
         
@@ -103,6 +104,7 @@ public class AddStudent extends Application {
                 ae.consume();
             }
         });
+        fieldValidate(firstNameFld);
         
         lastNameFld=new TextField();
         lastNameFld.setPrefSize(120, 25);
@@ -116,6 +118,7 @@ public class AddStudent extends Application {
                 ae.consume();
             }
         });
+        fieldValidate(lastNameFld);
         
         genderLbl=new Label("Хүйс");
         genderLbl.setId("regLbl");
@@ -156,9 +159,6 @@ public class AddStudent extends Application {
         countryCmBox.setPrefSize(80, 25);
         countryCmBox.setLayoutX(25);
         countryCmBox.setLayoutY(310);
-        
-        
-        
         
         addressLbl=new Label("Гэрийн хаяг");
         addressLbl.setId("regLbl");
@@ -242,8 +242,10 @@ public class AddStudent extends Application {
         cancelBtn=new Button("Болих");
         cancelBtn.setFont(Font.font("Verdana", 15));
         cancelBtn.setOnAction(ae-> {
-            ae.consume();
-            addStudentStage.close();
+            int answer=JOptionPane.showConfirmDialog(null, "Гарах уу?");
+            if(answer==JOptionPane.YES_OPTION) {
+                addStudentStage.close();
+            }
         });
         cancelBtn.setPrefSize(120, 30);
         cancelBtn.setLayoutX(160);
@@ -278,12 +280,8 @@ public class AddStudent extends Application {
                 registerBtn
         );
         
-        
-        
-        
-        
-        
         Scene scene=new Scene(pane, 305, 730);
+        scene.getStylesheets().add(getClass().getResource("managerStyle.css").toExternalForm());
         addStudentStage.setTitle("Оюутан нэмэх");
         addStudentStage.setScene(scene);
         addStudentStage.setResizable(false);
@@ -295,6 +293,7 @@ public class AddStudent extends Application {
         mobileFld.setPrefSize(170, 25);
         mobileFld.setLayoutX(110);
         mobileFld.setLayoutY(310);
+        mobileFld.setPromptText("Утасны дугаар");
         mobileFld.setOnKeyTyped(ae-> {
             char c=new Character(ae.getCharacter().toCharArray()[0]);
             if(!((c>='0')&&(c<='9')|| (c == '+') ||(c==KeyEvent.VK_BACK_SPACE)||(c==KeyEvent.VK_DELETE))) {
@@ -308,6 +307,8 @@ public class AddStudent extends Application {
                 mobileFld.textProperty().setValue(value.substring(0, limit));
             }
         });
+        
+        fieldValidate(mobileFld);
     }
     
     private void DayField() {
@@ -329,6 +330,8 @@ public class AddStudent extends Application {
                 ddFld.textProperty().setValue(value.substring(0, limit));
             }
         });
+        
+        fieldValidate(ddFld);
     }
     
     private void MonthField() {
@@ -350,6 +353,8 @@ public class AddStudent extends Application {
                 mmFld.textProperty().setValue(value.substring(0, limit));
             }
         });
+        
+        fieldValidate(mmFld);
     }
     
     private void YearField() {
@@ -371,6 +376,8 @@ public class AddStudent extends Application {
                 yyyyFld.textProperty().setValue(value.substring(0, limit));
             }
         });
+        
+        fieldValidate(yyyyFld);
     }
     
     private void EmailField() {
@@ -378,6 +385,8 @@ public class AddStudent extends Application {
         emailFld.setLayoutX(25);
         emailFld.setLayoutY(640);
         emailFld.setPromptText("Жишээ нь: _____@_____.com");
+        
+        fieldValidate(emailFld);
     }
     
     public void GetUserInfo() {
@@ -395,37 +404,32 @@ public class AddStudent extends Application {
         computerNumber=comCmBox.getValue();
     }
     
-    public void Validation() {
-        count=0;
+    private void fieldValidate(TextField textField) {
+        textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
+            if(oldValue) {
+                textFieldValidate(textField);
+            }
+        });
+    }
+    
+    private void textFieldValidate(final TextField textField) {
+        textField.textProperty().addListener((ObservableValue<? extends String> observable, String oldValue, String newValue) -> {
+            fieldValidation(textField);
+        });
         
-        if(firstName.equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter your name");
+        fieldValidation(textField);
+    }
+    
+    public void fieldValidation(TextField textField) {
+        ObservableList<String> styleClass=textField.getStyleClass();
+        if(textField.getText().trim().length()==0) {
+            if(! styleClass.contains("error")) {
+                styleClass.add("error");
+            }
         }
         
-        else if(lastName.equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter your last name");
+        else {
+            styleClass.removeAll(Collections.singleton("error"));
         }
-        
-        else if(mobile.equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter your phone number");
-        }
-        
-        else if(address.equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter your address");
-        }
-        
-        else if(dd.equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter day");
-        }
-        
-        else if(mm.equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter month");
-        }
-        
-        else if(yyyy.equals("")) {
-            JOptionPane.showMessageDialog(null, "Enter year");
-        }
-        
-        
     }
 }
