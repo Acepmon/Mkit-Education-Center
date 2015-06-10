@@ -1,5 +1,6 @@
 package ManagerPac;
 
+import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
@@ -70,17 +71,23 @@ public class Student {
     private Button addBtn;
     private Button deleteBtn;
     
+    ObservableList<StudentObj> data=FXCollections.observableArrayList();
+    
     public Student() {
         studentPane=new Pane();
         
-        ObservableList<StudentObj> data = FXCollections.observableArrayList();
+        ArrayList<Object> arrayData=new ArrayList<>();
         ObservableList<String> responseData = FXCollections.observableArrayList();
+        
         responseData.add("stu01::sLastName::sFirst::88998899::stu1@gmail.com::stu1 address::java::lesID1::com1::stu1join");
         responseData.add("stu02::2LastName::2First::88998899::stu2@gmail.com::stu2 address::c#::lesID2::com2::stu2join");
-        for(String str : responseData){
+        arrayData.addAll(responseData);
+        
+        for(int i=0; i<arrayData.size(); i++){
+            String str=(String) arrayData.get(i);
             String[] cols = str.split("::");
-            StudentObj student = new StudentObj(cols[0], cols[1], cols[2], cols[3], cols[4], cols[5], cols[6], cols[7], cols[8], cols[9]);
-            data.add(student);
+            StudentObj studentObj=new StudentObj(cols[0], cols[1], cols[2], cols[3], cols[4], cols[5], cols[6], cols[7], cols[8], cols[9]);
+            data.add(studentObj);
         }
         
         studentLbl=new Label("Оюутнууд");
@@ -112,6 +119,9 @@ public class Student {
         );
         
         searchByCmBox=new ComboBox<String> (types);
+        searchByCmBox.setOnAction(ae-> {
+            searchFilter();
+        });
         searchByCmBox.setValue("Нийтээр нь хайх");
         searchByCmBox.setPrefSize(140, 25);
         searchByCmBox.setLayoutX(30);
@@ -122,6 +132,9 @@ public class Student {
         searchFld.setLayoutX(200);
         searchFld.setLayoutY(610);
         searchFld.setPromptText("Хайх үгээ оруул ..");
+        searchFld.setOnKeyReleased(ae-> {
+            searchFilter();
+        });
         
         Image searchImg=new Image("ManagerPac/search-icon.png");
         ImageView searchIcon=new ImageView();
@@ -427,5 +440,43 @@ public class Student {
         computerCol.setId("column");
         
         tableView.getColumns().addAll(idCol, nameCol, classCol, computerCol);
+    }
+    
+    void searchFilter() {
+        String cellValue="";
+        ObservableList<StudentObj> tableItem=FXCollections.observableArrayList();
+        for(int i=0; i<data.size(); i++) {
+            StudentObj studentObj=data.get(i);
+            switch(searchByCmBox.getValue()) {
+                case "Кодоор":
+                    cellValue=studentObj.getId().toLowerCase();
+                    break;
+
+                case "Нэрээр":
+                    cellValue=studentObj.getFirstName().toLowerCase();
+                    break;
+
+                case "Овогоор":
+                    cellValue=studentObj.getLastName().toLowerCase();
+                    break;
+
+                case "Утасны дугаараар":
+                    cellValue=studentObj.getMobile().toLowerCase();
+                    break;
+
+                case "Ангиар":
+                    cellValue=studentObj.getClassName().toLowerCase();
+                    break;
+                    
+                default:
+                    cellValue=studentObj.getId().toLowerCase()+studentObj.getFirstName().toLowerCase()+studentObj.getLastName().toLowerCase()+studentObj.getMobile().toLowerCase()+studentObj.getClassName().toLowerCase();
+            }
+            
+            if(cellValue.contains(searchFld.getText().toLowerCase())) {
+                tableItem.add(studentObj);
+            }
+            
+            tableView.setItems(tableItem);
+        }
     }
 }

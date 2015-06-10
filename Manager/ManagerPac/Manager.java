@@ -2,7 +2,6 @@ package ManagerPac;
 
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -21,8 +20,8 @@ public class Manager {
 
     private Scene scene;
     
-    private MenuBar menuBar;
-    private Menu managerMenu;
+    MenuBar menuBar;
+    Menu managerMenu;
 
     public Scene getScene() {
         return scene;
@@ -117,14 +116,6 @@ public class Manager {
         
         hbox.getChildren().addAll(managerNameLbl, menuBar);
         return hbox;
-    }
-    
-    public void setUserName(String str) {
-        this.username=str;
-    }
-    
-    public String getUserName() {
-        return this.username;
     }
     
     public void changeUsernameOfMenu(String str) {

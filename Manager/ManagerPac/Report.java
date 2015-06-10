@@ -1,5 +1,6 @@
 package ManagerPac;
 
+import Controller.ClientTest;
 import java.time.LocalDate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,6 +43,8 @@ public class Report{
             ReportObj report = new ReportObj(cols[0], cols[1], cols[2], cols[3], cols[4], cols[5], cols[6]);
             data.add(report);
         }
+        
+        
         
         ObservableList<String> reportType = FXCollections.observableArrayList("Нийт","Ирц","Шалгалт","Бие Даалт","Даалгавар");
         ComboBox<String> reportCombo = new ComboBox<String>(reportType);

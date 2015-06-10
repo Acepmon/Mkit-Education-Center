@@ -63,13 +63,13 @@ public class ManagerProfile {
     public void start(Stage managerStage) {
         managerPane=new Pane();
         Scene managerScene=new Scene(managerPane, 590, 510);
-        String responseData = (String) ClientTest.RequestAjluulah("getManProfile", Launcher.getMANAGER().getUserName());
+        String responseData=(String) ClientTest.RequestAjluulah("getManProfile", Launcher.getMANAGER().managerMenu.getText());
 //        String responseData=("manager001::Suns::Chotgor::88998899::shulam@gmail.com::alialagch::Saran deer amidragch::2015-04-01");
 //                
 //        for(String str: responseData){
 //            String[] cols = str.split("::");
 //            manager = new ManagerObj(cols[0], cols[1], cols[2], cols[3], cols[4], cols[5], cols[6], cols[7]);
-//        }
+//        } 
         
         String[] cols = responseData.split("::");
         manager = new ManagerObj(cols[0], cols[1], cols[2], cols[3], cols[4], cols[5], "", "");
