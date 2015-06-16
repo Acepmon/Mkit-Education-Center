@@ -1,1 +1,0 @@
-﻿Бүх source code - ууд "source" гэсэн folder луу орно.
