@@ -1,0 +1,12 @@
+#removeColor .table-column-cell{
+    
+  -fx-background-color:transparent;
+  -fx-border-color:rgb(159,159,159);
+}
+
+.asda {
+    -fx-background-color:#99cc66;
+    -fx-border-color:rgb(159,159,159);
+    -fx-border-width: 1px 1px 0px 1px;
+    -fx-text-fill: white;
+}

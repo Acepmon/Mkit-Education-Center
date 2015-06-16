@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package surgaltin.alba;
+package teacher.ui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,11 +12,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 
-public class inner_homework {
+public class Inner_homework {
 private ScrollPane scroll;
     private FlowPane inner_;
 
-    public inner_homework() {
+    public Inner_homework() {
 
         inner_ = new FlowPane(10, 10);
         inner_.setPrefSize(220, 500);
@@ -41,13 +41,12 @@ private ScrollPane scroll;
         oyutan4.setPrefSize(200, 40);
         oyutan4.setId("panel_header_left_right");
         
-        
         Pane colorPane = new Pane();
         colorPane.setStyle("-fx-background-color: #99CC66; -fx-padding: 10px;");
         colorPane.setPrefSize(35, 35);
         Label nameLbl = new Label("Оюутны нэр");
         nameLbl.setFont(javafx.scene.text.Font.font("Arial", 12));
-       
+        
         Pane colorPane1 = new Pane();
         colorPane1.setStyle("-fx-background-color: #99CC66; -fx-padding: 10px;");
         colorPane1.setPrefSize(35, 35);

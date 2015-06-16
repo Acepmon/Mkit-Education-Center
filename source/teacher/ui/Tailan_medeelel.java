@@ -1,5 +1,8 @@
 package teacher.ui;
 
+import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -9,6 +12,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
+import teacher.model.Column;
+import teacher.model.CustomTable;
+import teacher.model.MedeelelTest;
 
 /**
  *
@@ -19,8 +25,19 @@ public class Tailan_medeelel {
      private TableView table = new TableView();
      private FlowPane pane = new FlowPane(new CheckBox(), new Label("asdasd"));
      private FlowPane irts;
+     
+     private ObservableList<MedeelelTest> tailanData;
+     
+     private CustomTable tailanTable;
     
     public Tailan_medeelel(){
+        
+        tailanTable = new CustomTable();
+        
+        tailanData = FXCollections.observableArrayList();
+        for(int i=0; i< tailanData.size(); i++){
+            
+        }
         
         
         irts = new FlowPane();
@@ -82,45 +99,65 @@ public class Tailan_medeelel {
         paneCol.setCellValueFactory(new PropertyValueFactory<>("pane"));
         paneCol.setId("green");
         
-        TableColumn nameCol = new TableColumn("Өдөр");
+        TableColumn nameCol = new TableColumn("ner");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         
         
-        TableColumn genderCol = new TableColumn("Өдөр");
+        TableColumn genderCol = new TableColumn("gender");
         genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
         genderCol.setId("green");
         
-        TableColumn numberCol = new TableColumn("Өдөр");
+        TableColumn numberCol = new TableColumn("utasnii dugaar");
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
         genderCol.setId("green");
         
-        TableColumn typeCol = new TableColumn("Өдөр");
+        TableColumn typeCol = new TableColumn("torol");
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         typeCol.setId("green");
         
-        TableColumn paymentCol = new TableColumn("Өдөр");
-        paymentCol.setCellValueFactory(new PropertyValueFactory<>("payment"));
         
-        TableColumn allPaymentCol = new TableColumn("Өдөр");
-        allPaymentCol.setCellValueFactory(new PropertyValueFactory<>("pane"));
-        allPaymentCol.setId("green");
         
         TableColumn dateCol = new TableColumn("Өдөр");
         
         dateCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         
         
-        table.getColumns().addAll(nersCol,paneCol);
-        //oyutan.add(new tables(fawfaw, gawgaw));
+        
+        table.getColumns().addAll(nersCol, paneCol, genderCol, numberCol, typeCol);
+       
+        
+        table.setItems(tailanData);
+        
+        tailanData.add(new MedeelelTest("bold", "dsada", "dsadsa", "sdaaaaa", "sdaaaa", "dsadsa", "sdaaaaa", "sdaaaa"));
+        tailanData.add(new MedeelelTest("bold", "dsada", "dsadsa", "sdaaaaa", "sdaaaa", "dsadsa", "sdaaaaa", "sdaaaa"));
+        tailanData.add(new MedeelelTest("bold", "dsada", "dsadsa", "sdaaaaa", "sdaaaa", "dsadsa", "sdaaaaa", "sdaaaa"));
         
         
         
-        irts.getChildren().addAll(topBf, table);
+        irts.getChildren().addAll(topBf, tailanTable.getTable());
             //irts.setRight(udur1View);
     }
     
     public FlowPane getContainer() {
         return this.irts;
+    }
+
+    public CustomTable getTailanTable() {
+        return tailanTable;
+    }
+    
+    public ArrayList<Column> getTableDatas(TableView table) {
+        int row_count = table.getItems().size();
+        ArrayList<Column> tailan = new ArrayList<>();
+        for(TableColumn tcol : (ObservableList<TableColumn>) table.getColumns()){
+            ArrayList<Object> datas = new ArrayList<>();
+            for(int index = 0; index<row_count; index++){
+                datas.add(tcol.getCellData(index));
+            }
+            Column column = new Column(tcol.getText(), "names", datas);
+            tailan.add(column);
+        }
+        return tailan;
     }
     
 }

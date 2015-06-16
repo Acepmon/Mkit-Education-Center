@@ -1,14 +1,14 @@
-package surgaltin.alba;
+package teacher.ui;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 
-public class homework {
+public class homework2 {
     
     private FlowPane rightFp;
     
-    public homework(){
+    public homework2(){
         
         rightFp = new FlowPane(20,20);
         rightFp.setPrefSize(250, 708);
@@ -38,7 +38,7 @@ public class homework {
         
         rightFp.setId("border");
         textFp.getChildren().addAll(irtsLb,dunLb);
-        rightFp.getChildren().addAll(nameLbl, new inner_homework().getContainer(), textFp);
+        rightFp.getChildren().addAll(nameLbl, new Inner_homework().getContainer(), textFp);
     }
     public FlowPane getContainer() {
         return this.rightFp;

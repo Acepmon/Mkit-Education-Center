@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
@@ -12,6 +14,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.FlowPane;
 import teacher.launch.Launcher;
+import teacher.model.Column;
+import teacher.model.CustomTable;
 import teacher.model.SearchModel;
 import teacher.model.StudentGrade;
 
@@ -21,11 +25,14 @@ public class Tailan_left_inner {
     private FlowPane inner_;
     private TableView table;
     private static ObservableList<SearchModel> searchData = FXCollections.observableArrayList();
+    
+    private CustomTable ct;
 
     public Tailan_left_inner() {
+        ct = new CustomTable();
 
         inner_ = new FlowPane();
-        inner_.setPrefSize(220, 500);
+        inner_.setPrefSize(220, 450);
 
         inner_.setId("panel");
         inner_.setAlignment(Pos.TOP_CENTER);
@@ -37,19 +44,29 @@ public class Tailan_left_inner {
 
         table = new TableView(searchData);
         table.setEditable(false);
-        table.setPrefSize(220, 500);
+        table.setPrefSize(220, 900);
 
         TableColumn nersCol = new TableColumn("Нэрс");
-        nersCol.setCellValueFactory(new PropertyValueFactory<>("ners"));
+        nersCol.setSortable(false);
         nersCol.setEditable(false);
+        nersCol.setGraphic(new CheckBox());
+        nersCol.setMinWidth(100);
+        nersCol.setCellValueFactory(new PropertyValueFactory<>("ners"));
 
         TableColumn paneCol = new TableColumn("Ирц");
+        paneCol.setSortable(false);
+        paneCol.setEditable(false);
+        paneCol.setGraphic(new CheckBox());
+        paneCol.setMinWidth(100);
         paneCol.setCellValueFactory(new PropertyValueFactory<>("pane"));
-        paneCol.setPrefWidth(50);
 
         TableColumn dateCol = new TableColumn("Өдөр");
+        dateCol.setSortable(false);
+        dateCol.setEditable(false);
+        dateCol.setGraphic(new CheckBox());
+        dateCol.setMinWidth(100);
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-        dateCol.setPrefWidth(100);
+        
         table.getColumns().addAll(nersCol, paneCol, dateCol);
 
         Separator sep_one = new Separator();
@@ -57,8 +74,10 @@ public class Tailan_left_inner {
 
         Separator sep_two = new Separator();
         sep_two.setPrefWidth(180);
-
-        inner_.getChildren().addAll(table);
+        
+       
+        
+        inner_.getChildren().addAll(customTable());
         scroll = new ScrollPane(inner_);
 
     }
@@ -67,7 +86,7 @@ public class Tailan_left_inner {
         return this.scroll;
     }
 
-    public static void setDatas() {
+    public static void setDatas(String... datas) {
         for (StudentGrade stu : (ArrayList<StudentGrade>) Tailan_left.getStudentDatas()) {
             SearchModel sm = new SearchModel();
             sm.setNers(stu.getName());
@@ -99,5 +118,27 @@ public class Tailan_left_inner {
 
             table.setItems(tableItem);
         }
+    }
+    
+    private TableView customTable() {
+        
+        
+        ArrayList<Object> namesData = new ArrayList<>();
+        namesData.add("Jane");
+        namesData.add("Marcus");
+        namesData.add("Brittany");
+        namesData.add("Bob");
+        Column names = new Column("Names", namesData);
+        
+        ct.addColumns(names);
+        
+        return ct.getTable();
+    }
+
+  
+    
+    
+    public CustomTable getCustomTable() {
+        return this.ct;
     }
 }

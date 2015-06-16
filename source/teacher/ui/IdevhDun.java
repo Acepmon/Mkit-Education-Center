@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package teacher.ui;
 
 import javafx.collections.FXCollections;
@@ -21,7 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-import teacher.model.IdevhModel;
+import teacher.model.DunOruulahModel;
 
 
 public class IdevhDun {
@@ -30,7 +26,7 @@ public class IdevhDun {
     private TableView table;
     private FlowPane irts;
     
-    private ObservableList<IdevhModel> responseData ;
+    private ObservableList<DunOruulahModel> responseData ;
 
     public IdevhDun() {
         ObservableList<String> responseData = FXCollections.observableArrayList();
@@ -44,7 +40,7 @@ public class IdevhDun {
         ObservableList<Object> row1 = FXCollections.observableArrayList();
         for (int i = 0; i<responseData.size(); i++) {
             String[] javalist = responseData.get(i).split("\\|\\|");
-            row1.add(new IdevhModel(javalist[0],javalist[1],javalist[2],javalist[3],javalist[4],javalist[5],javalist[6],javalist[7],javalist[8]));
+            row1.add(new DunOruulahModel(javalist[0],javalist[1],javalist[2],javalist[3],javalist[4],javalist[5],javalist[6],javalist[7],javalist[8]));
         }
 
         irts = new FlowPane();
@@ -73,7 +69,7 @@ public class IdevhDun {
         dunOruulah.setId("green");
                 dunOruulah.setOnMousePressed(ae -> {
             Stage stage = new Stage();
-            new DunOruulah_Zasah().start(stage);
+            new IrtsZasah().start(stage);
         });
 
         Label saveLb = new Label("Хадгалах");

@@ -1,273 +1,146 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package teacher.ui;
 
-import static java.util.Collections.addAll;
-import javafx.beans.binding.NumberBinding;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.Separator;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
-import sun.security.krb5.JavaxSecurityAuthKerberosAccess;
+import javafx.stage.Stage;
 import teacher.model.DunOruulahModel;
-import static teacher.ui.IdevhDun.oyutan;
 
-/**
- *
- * @author JAVA M2
- */
 
-public class DunOruulah {    
-    private BorderPane centerFp;
-    private TableView table;    
-    private ObservableList<DunOruulahModel> data = FXCollections.observableArrayList();
-  
-   
-    public DunOruulah(){        
-//        final GridPane grid = new GridPane();
-   
-        centerFp = new BorderPane();
-        centerFp.setPrefSize(524, 708);
-        centerFp.setStyle("-fx-background-color: white");
+public class DunOruulah {
+
+    public static final ObservableList<FlowPane> oyutan = FXCollections.observableArrayList();
+    private TableView table;
+    private FlowPane irts;
+    
+    private ObservableList<DunOruulahModel> responseData ;
+    Node getContainer;
+
+    public DunOruulah() {
+        ObservableList<String> responseData = FXCollections.observableArrayList();
+        responseData.add("Болд||10||10||10||10||10||10||10||100");
+        responseData.add("Бат||8||2||6||5||9||2||10||47");
+        responseData.add("Цэцэг||7||3||8||4||3||7||10||25");
+        responseData.add("Retard||0||0||0||0||0||0||10||10");
+        responseData.add("Дэлгэр||8||3||8||4||3||7||10||55");
+        responseData.add("Дорж||9||4||7||9||9||9||10||69");
         
-        //////title 
+        ObservableList<Object> row1 = FXCollections.observableArrayList();
+        for (int i = 0; i<responseData.size(); i++) {
+            String[] javalist = responseData.get(i).split("\\|\\|");
+            row1.add(new DunOruulahModel(javalist[0],javalist[1],javalist[2],javalist[3],javalist[4],javalist[5],javalist[6],javalist[7],javalist[8]));
+        }
+
+        irts = new FlowPane();
+        irts.setPrefSize(790, 700);
+        irts.setStyle("-fx-background-color: #F6F6F7");
+
         BorderPane topBf = new BorderPane();
-        topBf.setPrefSize(524, 60);
+        topBf.setPrefSize(1050, 60);
         topBf.setStyle("-fx-background-color: #E6E6E6; -fx-padding: 10px;");
-        
-        Label nameLbl = new Label("Хичээлээ сонгон уу!");
-        nameLbl.setAlignment(Pos.CENTER_LEFT);
-        nameLbl.setPrefSize(180, 60);
+        Label nameLbl = new Label("Дүн оруулах");
+        nameLbl.setStyle("-fx-background-color: #E6E6E6; -fx-padding: 10px;");
+        nameLbl.setAlignment(Pos.CENTER);
+        nameLbl.setPrefSize(200, 60);
         nameLbl.setFont(javafx.scene.text.Font.font("Arial", 18));
-        nameLbl.setId("btns");        
+
         
-        FlowPane btnFl = new FlowPane();
-        btnFl.setPadding(new Insets(20, 0, 0, 25));
-        btnFl.setAlignment(Pos.CENTER_RIGHT);
-        btnFl.setPrefSize(340, 60);
-        btnFl.setDisable(true);
+
+        FlowPane btnFl = new FlowPane(10, 10);
+        btnFl.setAlignment(Pos.CENTER);
+        btnFl.setPrefSize(360, 60);
         
-        ToggleButton java = new ToggleButton("Java ");
-        java.setAlignment(Pos.CENTER);
-        java.setPrefSize(60,25);
-        java.setDisable(false);
-       
+         Label dunOruulah = new Label("Дүн оруулах");
+        dunOruulah.setAlignment(Pos.CENTER);
+        dunOruulah.setPrefSize(100, 25);
+        dunOruulah.setFont(javafx.scene.text.Font.font("Arial", 15));
+        dunOruulah.setId("green");
+                dunOruulah.setOnMousePressed(ae -> {
+            Stage stage = new Stage();
+            new IrtsZasah().start(stage);
+        });
+
+        Label saveLb = new Label("Хадгалах");
+        saveLb.setAlignment(Pos.CENTER);
+        saveLb.setPrefSize(100, 25);
+        saveLb.setFont(javafx.scene.text.Font.font("Arial", 15));
+        saveLb.setId("green");
         
-        ToggleButton c = new ToggleButton("C# "); 
-        c.setAlignment(Pos.CENTER);
-        c.setPrefSize(60,25);
-        c.setDisable(false);
-              
-        ToggleButton korea = new ToggleButton("Korean languge");
-        korea.setAlignment(Pos.CENTER);
-        korea.setPrefSize(110 ,20);  
-        korea.setDisable(false);                
+
+        Label editLb = new Label("Засах");
+        editLb.setAlignment(Pos.CENTER);
+        editLb.setPrefSize(80, 25);
+        editLb.setFont(javafx.scene.text.Font.font("Arial", 15));
+        editLb.setId("green");
+
+        btnFl.getChildren().addAll(dunOruulah,saveLb, editLb);
 
         topBf.setLeft(nameLbl);
         topBf.setRight(btnFl);
-        
-        nameLbl.setOnMousePressed(new EventHandler<MouseEvent>() {
 
-            @Override
-            public void handle(MouseEvent event) {             
-                if(btnFl.isDisabled()){
-                    btnFl.setDisable(false);
-                }
-                  }
-      });  
+        //////////////////////////////// 
+        table = new TableView();
+        table.setEditable(false);
+        table.setItems(row1);
+        table.setStyle("-fx-alignment: CENTER;");
+        table.setPrefSize(1020, 645);
+        
+        TableColumn IdCol = new TableColumn("Нэр");
+        IdCol.setCellValueFactory(new PropertyValueFactory<>("ner"));
+        IdCol.setEditable(false);
+        
+        IdCol.setPrefWidth(120);
+                
 
-                btnFl.getChildren().addAll( java,c,korea);
-        
-         java.setOnMousePressed(ae-> {
-            if(java.isDisabled());
-            c.setDisable(true);
-            korea.setDisable(true);                   
-    });
-         c.setOnMousePressed(ae -> {
-             if(c.isDisabled());
-             java.setDisable(true);
-             korea.setDisable(true);
-         });
-         korea.setOnMousePressed(ae-> {
-             if(korea.isDisable())
-                 c.setDisable(true);
-             java.setDisable(true);
-         });
-        
-      ///////////////////////////////////////       
-      ObservableList<String> responseData = FXCollections.observableArrayList();
-      responseData.addAll("bold", "Bat", "Zulaa", "Mongol");
-        
-      TabPane tabPane = new TabPane(); 
-      tabPane.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
-      Tab tabA = new Tab("Шалгалт");
-      tabA.setStyle("-fx-padding: 15px");        
-      
-      Tab tabB = new Tab("Итвэхи");
-      tabB.setStyle("-fx-padding: 15px"); 
-      
-      Tab tabC = new Tab("Ирц");
-      tabC.setStyle("-fx-padding: 15px");
-      
-      Tab tabD = new Tab("Даалгавар");
-      tabD.setStyle("-fx-padding: 15px");
-      
-      TableView table = new TableView();
-          
-      
-        ////////////////////////////////     
-
-      HBox hbox = new HBox();
-      hbox.setPrefSize(524, 60);
-      hbox.setAlignment(Pos.BOTTOM_LEFT);
-      hbox.setStyle("-fx-background-color: #E6E6E6; -fx-padding: 10px;");
-      hbox.setId("panel");
-      
-      VBox vbox = new VBox();
-      vbox.setPrefSize(524, 648);
-      vbox.setAlignment(Pos.TOP_CENTER);
-      vbox.setId("panel");
-      
-        table.setEditable(true);
-        table.setPrefSize(524, 500);
-        
-        TableColumn idCol = new TableColumn("сар");
-        idCol.setCellValueFactory(new PropertyValueFactory<>("Огноо"));
-        idCol.setEditable(false);
-        idCol.setPrefWidth(100);                
-
-        TableColumn nameCol = new TableColumn("Project name");
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("Бодлого"));
-        nameCol.setEditable(true);
-        nameCol.setPrefWidth(150);
-        
-        TableColumn timeCol = new TableColumn("Хугацаа");
-        timeCol.setCellValueFactory(new PropertyValueFactory<>(" 7 "));
-        timeCol.setEditable(false);
-        timeCol.setPrefWidth(100); 
-        
-        TableColumn pointCol = new TableColumn("Дүн");
-        pointCol.setCellValueFactory(new PropertyValueFactory<>(" 89 "));
-        pointCol.setEditable(false);
-        pointCol.setPrefWidth(100); 
+        TableColumn bd1 = new TableColumn("Бие даалт 1");
+        bd1.setCellValueFactory(new PropertyValueFactory<>("bd1"));
+                bd1.setPrefWidth(120);
+                TableColumn bd2 = new TableColumn("Бие даалт 2");
+        bd2.setCellValueFactory(new PropertyValueFactory<>("bd2"));
+        bd2.setPrefWidth(120);
+                        TableColumn bd3 = new TableColumn("Бие даалт 3");
+        bd3.setCellValueFactory(new PropertyValueFactory<>("bd3"));
+        bd3.setPrefWidth(120);
+                        TableColumn bd4 = new TableColumn("Бие даалт 4");
+        bd4.setCellValueFactory(new PropertyValueFactory<>("bd4"));
+        bd4.setPrefWidth(120);
+                        TableColumn bd5 = new TableColumn("Бие даалт 5");
+        bd5.setCellValueFactory(new PropertyValueFactory<>("bd5"));
+        bd5.setPrefWidth(120);
+                        TableColumn bd6 = new TableColumn("Бие даалт 6");
+        bd6.setCellValueFactory(new PropertyValueFactory<>("bd6"));
+        bd6.setPrefWidth(120);
+                        TableColumn bd7 = new TableColumn("Бие даалт 7");
+        bd7.setCellValueFactory(new PropertyValueFactory<>("bd7"));
+        bd7.setPrefWidth(120);
+                                TableColumn niit = new TableColumn("Нийт");
+        niit.setCellValueFactory(new PropertyValueFactory<>("niit"));
+        niit.setPrefWidth(120);
     
-        ListView listView = new ListView(oyutan);
-        listView.setEditable(false);
-        listView.setPrefSize(230, 400);
 
-        for (String str : responseData) {
-            FlowPane flowpane = new FlowPane();
+        table.getColumns().addAll(IdCol, bd1,bd2,bd3,bd4,bd5,bd6,bd7,niit);
 
-            TextField textDun = new TextField();
-            Label label = new Label("dfgh"+str);
 
-            label.setOnMousePressed(ae -> {
-                if (textDun.isEditable()) {
-                    
-                } else {
-                    
-                }
-            });
-            
-            flowpane.getChildren().addAll(textDun, label);
-            flowpane.setPrefWidth(20);
-            flowpane.setAlignment(Pos.BOTTOM_LEFT);
-            flowpane.setPadding(new Insets(3, 3, 3, 3));            
-
-//            data.add(new DunOruulahModel(str, Flowpane,"",""));
-            oyutan.add(flowpane);
-        }
-        Label newlb = new Label();
-        newlb.setPrefSize(30, 10);
-       
-        Label newlb1 = new Label();
-        newlb1.setPrefSize(30, 10);
-        
-        Label newlb2 = new Label();
-        newlb2.setPrefSize(30, 10);
-        
-        Label all = new Label("Бүх оюутанд дүн нэмэх:"); 
-        all.setPrefSize(140, 10);
-        all.setId("btns");
-        
-        TextField allTf = new TextField();
-        allTf.setPromptText("Дүн");
-        allTf.setPrefSize(40, 20);
-        
-        Button addBtn = new Button("Нэмэх");
-        addBtn.setAlignment(Pos.BOTTOM_CENTER);
-        addBtn.setPrefSize(90, 20);
-        addBtn.setFont(javafx.scene.text.Font.font("Arial", 15));
-        addBtn.setId("green");
-        
-        Button saveBtn = new Button("Хадгалах");
-        saveBtn.setAlignment(Pos.BOTTOM_CENTER);
-        saveBtn.setPrefSize(100, 20);
-        saveBtn.setFont(javafx.scene.text.Font.font("Arial", 15));
-        saveBtn.setId("green");
-        
-        Button editBtn = new Button("Засах");
-        editBtn.setAlignment(Pos.BOTTOM_CENTER);
-        editBtn.setPrefSize(80, 20);
-        editBtn.setFont(javafx.scene.text.Font.font("Arial", 15));
-        editBtn.setId("green");
-                        
-
-        table.setItems(data);
-        table.getColumns().addAll(idCol, nameCol,timeCol, pointCol);    
-    
-//      VBox tabC_vBox = new VBox();
-//      tabC.setContent(tabC_vBox);
-//      tabC_vBox.getChildren().addAll(new Button("Button 1@Tab C"),      
-//              new Button("Button 4@Tab C"));
-      
-        hbox.getChildren().addAll(all,allTf, newlb1,addBtn, newlb ,saveBtn, newlb2,editBtn);
-        vbox.getChildren().add(table);
-        
-        
-        tabB.setContent(vbox);
-        vbox.getChildren().add(hbox);
-        
-        tabPane.getTabs().addAll(tabA,tabB,tabC);  
-        
-        centerFp.setTop(topBf);     
-        centerFp.setCenter (tabPane);           
-       
-        /////////////////////////////////        
+        irts.getChildren().addAll(topBf, table);
+  
     }
-    public BorderPane getContainer() {
-        return this.centerFp;
+
+    public FlowPane getContainer() {
+        return this.irts;
     }
+
 }
-

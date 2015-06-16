@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package surgaltiin.alba.irts;
+package teacher.ui;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.Label;
@@ -14,7 +14,7 @@ import javafx.scene.layout.FlowPane;
  *
  * @author JAVA M2
  */
-public class tables {
+public class Tables {
     
     private SimpleStringProperty id;
     private SimpleStringProperty ovog;
@@ -27,7 +27,7 @@ public class tables {
     private SimpleStringProperty time;
     private FlowPane pane = new FlowPane(new RadioButton(), new Label("asdasd"));
 
-    public tables(String id, String ovog, String name, String gender, String number, String type, String payment, String allPayment, String time) {
+    public Tables(String id, String ovog, String name, String gender, String number, String type, String payment, String allPayment, String time) {
         this.id = new SimpleStringProperty(id);
         this.ovog = new SimpleStringProperty(ovog);
         this.name = new SimpleStringProperty(name);

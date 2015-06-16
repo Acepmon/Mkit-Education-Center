@@ -1,4 +1,4 @@
-package surgaltin.alba;
+package teacher.ui;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -6,21 +6,21 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 
-public class medeelel {
+public class Medeelel {
     
     private BorderPane centerFp;
     
-    public medeelel(){
+    public Medeelel(){
         
         centerFp = new BorderPane();
-        centerFp.setPrefSize(528, 708);
+        centerFp.setPrefSize(524, 708);
         centerFp.setStyle("-fx-background-color: white");
         
         //centerFp.setAlignment(Pos.CENTER);
         //////title 
         Label nameLbl = new Label("Мэдээлэл");
         nameLbl.setAlignment(Pos.CENTER);
-        nameLbl.setPrefSize(535, 60);
+        nameLbl.setPrefSize(750, 60);
         nameLbl.setFont(javafx.scene.text.Font.font("Arial", 18));
         nameLbl.setStyle("-fx-background-color: #E6E6E6; -fx-padding: 10px;");
         nameLbl.setId("text");

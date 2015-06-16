@@ -1,30 +1,23 @@
 
-package surgaltin.alba;
+package teacher.ui;
 
-import java.awt.event.MouseEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import surgaltiin.alba.irts.irts;
+import teacher.config.Config;
 
-public class teacherMain {
+public class teacherMain_1 {
     
     private static BorderPane rootNode;
     private Scene scene;
     
-    public static huvaari huvaari = new huvaari();
-    public static homework homework = new homework();
-    public static medeelel medeelel = new medeelel();
-    public static irts irts = new irts();
     
-    public teacherMain(){
+    public teacherMain_1(){
         
         rootNode = new BorderPane();        
-        scene = new Scene(rootNode, config.Config.STAGE_WIDTH, config.Config.STAGE_HEIGHT);
+        scene = new Scene(rootNode, Config.STAGE_WIDTH, Config.STAGE_HEIGHT);
         
         ///// menu bar
         
@@ -43,9 +36,9 @@ public class teacherMain {
         mainBtn.setAlignment(Pos.CENTER);
         mainBtn.setId("btn");
         mainBtn.setOnMousePressed(ae -> {
-            teacherMain.changeLeft(huvaari.getContainer());
-            teacherMain.changeRight(homework.getContainer());
-            teacherMain.changeCenter(medeelel.getContainer());
+//            teacherMain.changeLeft(huvaari.getContainer());
+//            teacherMain.changeRight(homework.getContainer());
+//            teacherMain.changeCenter(medeelel.getContainer());
         });
         
         Label hwBtn = new Label("Даалгавар");
@@ -79,39 +72,39 @@ public class teacherMain {
         
         ////events
         
-        mainBtn.setOnMouseEntered(i -> {
-            System.out.println("123456");
+        tailanBtn.setOnMousePressed(ae -> {
+//            teacherMain.changeLeft(teacherMain.tailan_left.getContainer());
+//            teacherMain.changeCenter(teacherMain.Tailan_medeelel.getContainer());
+//            teacherMain.changeRight(null);
         });
         
-        
-    
-        
         topFp.getChildren().addAll(mainBtn, hwBtn, examBtn, scoreBtn, tailanBtn);
-        
 
         rootNode.setTop(topFp);
-        rootNode.setLeft(huvaari.getContainer());
-        rootNode.setRight(homework.getContainer());
-        rootNode.setCenter(medeelel.getContainer());
+//        rootNode.setLeft(huvaari.getContainer());
+//        rootNode.setRight(homework.getContainer());
+//        rootNode.setCenter(medeelel.getContainer());
     }
     
-    public static void changeTop(Node node) {
-        teacherMain.rootNode.setTop(node);
-    }
-    public static void changeBottom(Node node) {
-        teacherMain.rootNode.setBottom(node);
-    }
-    public static void changeCenter(Node node) {
-        teacherMain.rootNode.setCenter(node);
-    }
-    public static void changeLeft(Node node) {
-        teacherMain.rootNode.setLeft(node);
-    }
-    public static void changeRight(Node node) {
-        teacherMain.rootNode.setRight(node);
-    }
+//    public static void changeTop(Node node) {
+//        teacherMain.rootNode.setTop(node);
+//    }
+//    public static void changeBottom(Node node) {
+//        teacherMain.rootNode.setBottom(node);
+//    }
+//    public static void changeCenter(Node node) {
+//        teacherMain.rootNode.setCenter(node);
+//    }
+//    public static void changeLeft(Node node) {
+//        teacherMain.rootNode.setLeft(node);
+//    }
+//    public static void changeRight(Node node) {
+//        teacherMain.rootNode.setRight(node);
+//    }
     
     public Scene getScene() {
         return this.scene;
-    }    
+    }
+    
+    
 }

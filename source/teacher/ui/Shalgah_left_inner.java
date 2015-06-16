@@ -7,12 +7,12 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.FlowPane;
 
-public class Inner_huvaari {
+public class Shalgah_left_inner {
 
     private ScrollPane scroll;
     private FlowPane inner_;
 
-    public Inner_huvaari() {
+    public Shalgah_left_inner() {
 
         inner_ = new FlowPane(10, 10);
         inner_.setPrefSize(220, 500);
@@ -21,17 +21,25 @@ public class Inner_huvaari {
         inner_.setAlignment(Pos.TOP_CENTER);
         inner_.setPadding(new Insets(20, 0, 0, 0));
 
-        Label label_one = new Label("10:00-11:20 цагт “Java” Лекц");
-        Label label_two = new Label("12:00-17:00 цагт “Java” Ceминар");
+        Label label_one = new Label("Шалгалтын нэр");
+        Label label_two = new Label("Шалгалтын нэр");
+        Label label_three = new Label("Шалгалтын нэр");
+        Label label_four = new Label("Шалгалтын нэр");
+        
         label_one.setId("btns");
         label_two.setId("btns");
+        label_three.setId("btns");
+        
         Separator sep_one = new Separator();
         sep_one.setPrefWidth(180);
 
         Separator sep_two = new Separator();
         sep_two.setPrefWidth(180);
 
-        inner_.getChildren().addAll(label_one, sep_one, label_two, sep_two);
+        Separator sep_three = new Separator();
+        sep_three.setPrefWidth(180);
+
+        inner_.getChildren().addAll(label_one, sep_one, label_two, sep_two, label_three, sep_three,label_four);
         scroll = new ScrollPane(inner_);
     }
 
