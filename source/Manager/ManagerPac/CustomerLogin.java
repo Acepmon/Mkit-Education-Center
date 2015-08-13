@@ -11,7 +11,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import Controller.ClientTest;
+import Controller.ServerConnection;
 import Model.LoginFeature;
 
 
@@ -23,6 +23,7 @@ import Model.LoginFeature;
 public class CustomerLogin {
 
     public static final File LOGINFILE = new File("login.txt");
+    public static final File IPFile = new File("ip.txt");
 
     private Scene myScene;
 
@@ -47,6 +48,9 @@ public class CustomerLogin {
         rootNode.setLayoutX((1024 - 400) / 2);
         rootNode.setLayoutY((768 - 500) / 2);
         root.setStyle("-fx-background-color: #fff");
+
+        Image anotherIcon = new Image("ManagerPac/manager_32x32_white.png");
+        myStage.getIcons().add(anotherIcon);
 
         myStage.setScene(myScene);
         myStage.setResizable(false);
@@ -106,18 +110,18 @@ public class CustomerLogin {
         /*Нэвтрэх button дээр дархад нэр нууц үг буруу байна гэсэн бичиг гарж ирнэ*/
         pnl = new Pane();
         pnl.setVisible(false);
-        cc = new Label("Username or Password Incorrect");
+        cc = new Label("Нэр эсвэл нууц үг буруу байна!!!");
         cc.setStyle("-fx-text-fill: #0AB2F5;");
         cc.setFont(new Font("Arial", 20));
         pnl.getChildren().addAll(cc);
-        aa = new Label("XooCoH");
+        aa = new Label("Xooсoн");
         aa.setStyle("-fx-text-fill: #0AB2F5;");
         aa.setVisible(false);
 
-        bb = new Label("XooCoH");
+        bb = new Label("Xooсoн");
         bb.setStyle("-fx-text-fill: #0AB2F5;");
         bb.setVisible(false);
-        
+
 
         /*Нэвтрэх button*/
         Button btn = new Button("Нэвтрэх");
@@ -148,9 +152,9 @@ public class CustomerLogin {
         }
 
         aa.setLayoutX(650);
-        aa.setLayoutY(235);
+        aa.setLayoutY(240);
         bb.setLayoutX(650);
-        bb.setLayoutY(285);
+        bb.setLayoutY(290);
         root.getChildren().addAll(aa, bb);
         rootNode.requestFocus();
         rootNode.getChildren().addAll(lbl, pnl, fld, fld2, box1, btn, btn2);
@@ -195,32 +199,32 @@ public class CustomerLogin {
             aa.setVisible(false);
             pnl.setVisible(false);
         } else {
-            
-            String str = (String) ClientTest.RequestAjluulah("Account", fld.getText() + "::" + fld2.getText());
-                String[] responseArr = str.split("::");
-                String type = responseArr[0];
-                String res = responseArr[1];
 
-                if (res.equalsIgnoreCase("true")) {
+            String str = (String) ServerConnection.Request("login", fld.getText() + "::" + fld2.getText() + "::manager");
+            String[] responseArr = str.split("::");
+            String type = responseArr[0];
+            String res = responseArr[1];
+
+            if (res.equalsIgnoreCase("true")) {
                 /*оюутан,админ,менежэр*/
-                    if (type.equalsIgnoreCase("менежер")) {
-                        tmp_username = fld.getText();
-                        tmp_password = fld2.getText();
-                        LoginFeature.refreshFile();
-                        Launcher.getMANAGER().changeUsernameOfMenu(fld.getText());
-                        Launcher.setScene(Launcher.getMANAGER().getScene());
-                    } else {
-                        aa.setVisible(false);
-                        bb.setVisible(false);
-                        pnl.setVisible(true);
-                        ((Label) pnl.getChildren().get(0)).setText("Зөвхөн менежер нэвтрэх ёстой!");
-                    }
-                } else if (res.equalsIgnoreCase("false")) {
-                    pnl.setVisible(true);
-                    ((Label) pnl.getChildren().get(0)).setText("Хэрэглэгчийн нэр эсвэл нууц үг буруу байна!");
+                if (type.equalsIgnoreCase("manager")) {
+                    tmp_username = fld.getText();
+                    tmp_password = fld2.getText();
+                    LoginFeature.refreshFile();
+                    Launcher.getMANAGER().changeUsernameOfMenu(fld.getText());
+                    Launcher.setScene(Launcher.getMANAGER().getScene());
+                } else {
                     aa.setVisible(false);
                     bb.setVisible(false);
+                    pnl.setVisible(true);
+                    ((Label) pnl.getChildren().get(0)).setText("Зөвхөн менежер нэвтрэх ёстой!");
                 }
+            } else if (res.equalsIgnoreCase("false")) {
+                pnl.setVisible(true);
+                ((Label) pnl.getChildren().get(0)).setText("Хэрэглэгчийн нэр эсвэл нууц үг буруу байна!");
+                aa.setVisible(false);
+                bb.setVisible(false);
+            }
         }
     }
 }

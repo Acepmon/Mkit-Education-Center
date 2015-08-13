@@ -71,7 +71,7 @@ public class Requester {
     }
     
     private Object process() {
-        return ClientTest.RequestAjluulah(this.request, this.data);
+        return ServerConnection.Request(this.request, this.data);
     }
 
     public void setRequest(Object request, Object data) {

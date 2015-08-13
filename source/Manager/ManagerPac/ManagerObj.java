@@ -2,23 +2,33 @@ package ManagerPac;
 
 public class ManagerObj {
     private String id;
-    private String surname;
-    private String name;
-    private String phone;
-    private String address;
-    private String email;
+    private String registration;
+    private String lastName;
+    private String firstName;
     private String status;
+    private String phone;
+    private String email;
+    private String social;
+    private String address;
     private String picture;
+    private String drop;
+    private String username;
+    private String password;
 
-    public ManagerObj(String id, String surname, String name, String phone, String address, String email, String status, String picture) {
+    public ManagerObj(String id, String registration, String lastName, String firstName, String status, String phone, String email, String social, String address, String picture, String drop, String username, String password) {
         this.id = id;
-        this.surname = surname;
-        this.name = name;
-        this.phone = phone;
-        this.address = address;
-        this.email = email;
+        this.registration = registration;
+        this.lastName = lastName;
+        this.firstName = firstName;
         this.status = status;
+        this.phone = phone;
+        this.email = email;
+        this.social = social;
+        this.address = address;
         this.picture = picture;
+        this.drop = drop;
+        this.username = username;
+        this.password = password;
     }
 
     public String getId() {
@@ -29,44 +39,28 @@ public class ManagerObj {
         this.id = id;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getRegistration() {
+        return registration;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setRegistration(String registration) {
+        this.registration = registration;
     }
 
-    public String getName() {
-        return name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getPhone() {
-        return phone;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getStatus() {
@@ -77,6 +71,38 @@ public class ManagerObj {
         this.status = status;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSocial() {
+        return social;
+    }
+
+    public void setSocial(String social) {
+        this.social = social;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getPicture() {
         return picture;
     }
@@ -85,5 +111,29 @@ public class ManagerObj {
         this.picture = picture;
     }
 
+    public String getDrop() {
+        return drop;
+    }
+
+    public void setDrop(String drop) {
+        this.drop = drop;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
     
 }

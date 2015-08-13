@@ -1,16 +1,26 @@
 package ManagerPac;
 
-public class ProgramObj {
-    String name;
-    String description;
-    String startDate;
-    String endDate;
+public class AdmissionsObj {
+    private String id;
+    private String name;
+    private String description;
+    private String startDate;
+    private String endDate;
 
-    public ProgramObj(String name, String description, String startDate, String endDate) {
+    public AdmissionsObj(String id, String name, String description, String startDate, String endDate) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -44,4 +54,6 @@ public class ProgramObj {
     public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
+
+    
 }

@@ -36,6 +36,4 @@ public class ReportColumnObj {
     public void setValue(ArrayList<Object> value) {
         this.value = value;
     }
-    
-    
 }

@@ -1,73 +1,240 @@
-#program_tab {
-    -fx-font-size:15px;
-    -fx-padding:5px 40px 5px 40px;
+/*Tab Pane Styling*/
+
+.tab-pane {
+    -fx-tab-max-width:120px;
+    -fx-tab-min-width:120px;
+    -fx-tab-max-height:40px;
+    -fx-tab-min-height:40px;
 }
 
-#teacher_tab {
-    -fx-font-size:15px;
-    -fx-padding:5px 60px 5px 60px;
+.tab-pane .tab-header-area .headers-region .tab .tab-container .tab-label {
+    -fx-alignment:CENTER;
+    -fx-text-fill:#ffffff;
 }
 
-#student_tab {
-    -fx-font-size:15px;
-    -fx-padding:5px 50px 5px 50px;
+#tab {
+    -fx-font-size:14px;
+    -fx-background-color:#486a9a;
 }
 
-#report_tab {
-    -fx-font-size:15px;
-    -fx-padding:5px 55px 5px 55px;
+#tab:hover {
+    -fx-background-color:#3e5577;
 }
+/*End*/
 
-#info {
+/*TextField Styling*/
+
+/*#info {
     -fx-background-color:#ffffff;
     -fx-text-fill:#666666;
-}
+    -fx-border-color:#0066cc;
+    -fx-border-width:1;
+    -fx-border-radius:3px 3px 3px 3px;
+}*/
+/*End*/
+
+/*Student Add Font*/
 
 #regLbl {
     -fx-font-family:'Lucidatypewriter', monospace;
 }
+/*End*/
 
-#tab_today {
-    -fx-padding:5px 25px 5px 25px;
-}
-
-#tab_all {
-    -fx-padding:5px 15px 5px 15px;
-}
-
-#tab_monday {
-    -fx-padding:5px 30px 5px 30px;
-}
-
-#tab_tuesday {
-    -fx-padding:5px 30px 5px 30px;
-}
-
-#tab_wednesday {
-    -fx-padding:5px 30px 5px 30px;
-}
-
-#tab_thursday {
-    -fx-padding:5px 30px 5px 30px;
-}
-
-#tab_friday {
-    -fx-padding:5px 30px 5px 30px;
-}
-
-#tab_saturday {
-    -fx-padding:5px 30px 5px 30px;
-}
-
-#tab_sunday {
-    -fx-padding:5px 37px 5px 37px;
-}
-
-.text-field.error {
-    -fx-text-box-border:red;
-    -fx-focus-color:red;
-}
+/*Table Column Alignment Styling*/
 
 #column {
     -fx-alignment:CENTER;
 }
+/*End*/
+
+/*Validation Styling*/
+
+.text-field.error {
+    -fx-border-radius:2px 2px 2px 2px;
+    -fx-text-box-border:red;
+    -fx-focus-color:red;
+}
+
+.text-area.areaError {
+    -fx-border-radius:2px 2px 2px 2px;
+    -fx-border-color:red;
+    -fx-focus-color:red;
+}
+
+.combo-box.comboError {
+    -fx-border-radius:3px 3px 3px 3px;
+    -fx-border-color:red;
+    -fx-focus-color:red;
+}
+
+.date-picker.dateError {
+    -fx-border-color:red;
+    -fx-focus-color:red;
+    -fx-border-radius:3px 3px 3px 3px;
+}
+
+/*End*/
+
+/*Buttons, DatePicker Arrow, ComboBox Arrow*/
+
+#iphone {
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-background-insets:0 0 -1 0,0,1;
+    -fx-background-radius:5,5,4;
+    -fx-text-fill:white;
+}
+
+#iphone:hover {
+    -fx-cursor:hand;
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 100%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 100%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-background-insets:0 0 -1 0,0,1;
+    -fx-background-radius:5,5,4;
+    -fx-text-fill:white;
+}
+/*End*/
+
+/*DatePicker Styling*/
+
+.date-picker {
+    -fx-border-color:#0066cc;
+    -fx-border-radius:3px 8px 8px 3px;
+    -fx-border-width:1;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-background-insets:0 0 -1 0,0,1;
+    -fx-background-radius:5,5,4;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-cursor:hand;
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 100%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 100%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-background-insets:0 0 -1 0,0,1;
+    -fx-background-radius:5,5,4;
+}
+
+.date-picker .arrow-button .arrow {
+    -fx-background-color:#ffffff;
+}
+/*End*/
+
+/*ComboBox Styling*/
+
+.combo-box .cell {
+    -fx-text-fill:#ffffff;
+}
+
+.combo-box .list-cell {
+    -fx-background-color:#486a9a;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color:#3e5577;
+}
+
+.combo-box .arrow {
+    -fx-background-color:#ffffff;
+}
+/*End*/
+
+/*Radio Button Styling*/
+
+.radio-button .radio .dot {
+    -fx-background-color:transparent;
+}
+
+.radio-button:focused .radio {
+    -fx-background-color:#486a9a;
+}
+/*End*/
+
+/*Search Button Styling*/
+
+#search {
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 0%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 0%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-background-insets:0 0 -1 0,0,1;
+    -fx-text-fill:white;
+}
+
+#search:hover {
+    -fx-cursor:hand;
+    -fx-background-color: 
+        #a6b5c9,
+        linear-gradient(#303842 100%, #3e5577 20%, #375074 100%),
+        linear-gradient(#768aa5 100%, #849cbb 5%, #5877a2 50%, #486a9a 51%, #4a6c9b 100%);
+    -fx-background-insets:0 0 -1 0,0,1;
+    -fx-text-fill:white;
+}
+/*End*/
+
+/*Manager Menu Styling*/
+
+.menu-bar {
+    -fx-alignment:center;
+    -fx-background-color:#486a9a;
+    -fx-border-color:#303842;
+    -fx-border-width:1px;
+    -fx-cursor:hand;
+}
+
+.menu-bar .label {
+    -fx-text-fill:#ffffff;
+}
+
+.menu {
+    -fx-alignment:center;
+}
+
+.menu:hover {
+    -fx-background-color:#3e5577;
+}
+
+.menu-item {
+    -fx-padding:5px 6px 5px 6px;
+    -fx-cursor:hand;
+    -fx-background-color:#486a9a;
+}
+
+.menu-item:hover {
+    -fx-background-color:#3e5577;
+}
+/*End*/
+
+/*Image View Styling*/
+
+
+
+/*End*/
+
+/*Browse Button Styling*/
+
+#browseLbl {
+    -fx-background-color:#486a9a;
+    -fx-text-fill:#ffffff;
+    -fx-alignment:center;
+    -fx-border-color:#486a9a;
+    -fx-border-width:1px;
+}
+
+#browseLbl:hover {
+    -fx-background-color:#3e5577;
+    -fx-cursor:hand;
+}
+
+/*End*/
